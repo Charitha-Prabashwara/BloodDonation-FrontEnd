@@ -1,12 +1,17 @@
 import React from "react";
-import Head from "../components/homepage/Head";
+const HtmlRenderer = () => {
+    return (
+      <iframe
+        src="/home/index.html"
+        style={{ width: '100%', height: '100vh', border: 'none' }}
+        title="HTML Renderer"
+      />
+    );
+  };
 function Home(){
     return(
       <>
-      <Head />
-      <h1 className="text-3xl font-bold underline">
-             Hello world!
-     </h1>
+      <HtmlRenderer />
       </> 
     )
 }
