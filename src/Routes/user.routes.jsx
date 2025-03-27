@@ -1,13 +1,11 @@
-import { BrowserRouter as UserBrowserRouter, Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 function UserRouter() {
     return (
-      <UserBrowserRouter>
-          <Routes>
-            <Route path="/user">    
-               {/* <Route path="/" element={}/>  */}  
-            </Route>
-          </Routes>
-      </UserBrowserRouter>
+     
+        <Routes>
+            {/* <Route path="/" element={}/>  */}  
+        </Routes>
+      
     )
   }
   export default UserRouter;
