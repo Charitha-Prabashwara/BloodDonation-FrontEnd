@@ -4,8 +4,7 @@ import NotFound from '../pages/404';
 
 function GuestRouter() {
   return (
-    <div>
-    
+     
       <Routes>
           <Route index element={<Home />}/> 
           <Route path="/statistics" element={<NotFound />}/> 
@@ -13,7 +12,6 @@ function GuestRouter() {
           <Route path="/aboutus" element={<NotFound />}/> 
       </Routes>
     
-    </div>
   )
 }
 export default GuestRouter;
