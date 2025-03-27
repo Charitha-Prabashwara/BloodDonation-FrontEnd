@@ -5,30 +5,30 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
-import GuestRouter from './Routes/guest.routes';
-import UserRouter from './Routes/user.routes';
-import DonorRouter from './Routes/donor.routes';
-import DoctorRouter from './Routes/doctor.routes';
-import AssistantRouter from './Routes/assistant.routes';
+import GuestRoutes from './Routes/guest.routes';
+import UserRoutes from './Routes/user.routes';
+import DonorRoutes from './Routes/donor.routes';
+import DoctorRoutes from './Routes/doctor.routes';
+import AssistantRoutes from './Routes/assistant.routes';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* Guest Routes */}
-        <Route path="/*" element={<GuestRouter/>} />
+        <Route path="/*" element={<GuestRoutes/>} />
 
         {/* User Routes */}
-        <Route path="/user/*" element={<UserRouter />} />
+        <Route path="/user/*" element={<UserRoutes />} />
 
         {/* Donor Routes */}
-        <Route path="/donor/*" element={<DonorRouter />} />
+        <Route path="/donor/*" element={<DonorRoutes />} />
 
         {/* Doctor Routes */}
-        <Route path="/doctor/*" element={<DoctorRouter />} />
+        <Route path="/doctor/*" element={<DoctorRoutes />} />
 
         {/* Assistant Routes */}
-        <Route path="/assistant/*" element={<AssistantRouter />} />
+        <Route path="/assistant/*" element={<AssistantRoutes />} />
       </Routes>
     </BrowserRouter>
   );
