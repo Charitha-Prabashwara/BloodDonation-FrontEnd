@@ -2,9 +2,11 @@ import { BrowserRouter as UserBrowserRouter, Route, Routes } from 'react-router-
 function UserRouter() {
     return (
       <UserBrowserRouter>
-        <Routes>
-            {/* <Route path="/" element={}/>  */}  
-        </Routes>
+          <Routes>
+            <Route path="/user">    
+               {/* <Route path="/" element={}/>  */}  
+            </Route>
+          </Routes>
       </UserBrowserRouter>
     )
   }

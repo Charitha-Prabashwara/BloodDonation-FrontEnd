@@ -2,9 +2,11 @@ import { BrowserRouter as DonorBrowserRouter, Route, Routes } from 'react-router
 function DonorRouter() {
     return (
       <DonorBrowserRouter>
-        <Routes>
-            {/* <Route path="/" element={}/>  */}  
-        </Routes>
+          <Routes>
+            <Route path="/donor">    
+               {/* <Route path="/" element={}/>  */}  
+            </Route>
+          </Routes>
       </DonorBrowserRouter>
     )
   }

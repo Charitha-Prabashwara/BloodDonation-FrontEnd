@@ -2,9 +2,11 @@ import { BrowserRouter as DoctorBrowserRouter, Route, Routes } from 'react-route
 function DoctorRouter() {
     return (
       <DoctorBrowserRouter>
-        <Routes>
-            {/* <Route path="/" element={}/>  */}  
-        </Routes>
+          <Routes>
+            <Route path="/doctor">    
+               {/* <Route path="/" element={}/>  */}  
+            </Route>
+          </Routes>
       </DoctorBrowserRouter>
     )
   }

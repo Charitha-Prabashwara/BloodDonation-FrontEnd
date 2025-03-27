@@ -2,9 +2,11 @@ import { BrowserRouter as AssistantRouterBrowserRouter, Route, Routes } from 're
 function AssistantRouter() {
     return (
       <AssistantRouterBrowserRouter>
-        <Routes>
-            {/* <Route path="/" element={}/>  */}  
-        </Routes>
+          <Routes>
+            <Route path="/assistant">    
+               {/* <Route path="/" element={}/>  */}  
+            </Route>
+          </Routes>
       </AssistantRouterBrowserRouter>
     )
   }
