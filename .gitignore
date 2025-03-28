@@ -32,3 +32,6 @@ dist/
 .next/
 .vercel/
 .netlify/
+
+
+.env
