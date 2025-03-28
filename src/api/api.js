@@ -2,7 +2,7 @@ import axios from "axios";
 import meta from "vite-meta";
 
 const API = axios.create({
-  baseURL: meta.env.VITE_REACT_APP_API_URL || "http://localhost:8000", // Store API URL in environment variables
+  baseURL: meta.env.VITE_REACT_APP_API_URL || "http://localhost:8000/api", // Store API URL in environment variables
   timeout: 10000, // Set timeout for requests
   headers: {
     "Content-Type": "application/json",
