@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const API = axios.create({
-  baseURL:  import.meta.env.VITE_REACT_APP_API_URL || "http://localhost:8000/api/v1", // Store API URL in environment variables
+  baseURL: import.meta.env.VITE_REACT_APP_API_URL,// Store API URL in environment variables
   timeout: 10000, // Set timeout for requests
   headers: {
     "Content-Type": "application/json",
