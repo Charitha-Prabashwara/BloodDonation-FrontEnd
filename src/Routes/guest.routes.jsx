@@ -7,9 +7,15 @@ function GuestRouter() {
      
       <Routes>
           <Route index element={<Home />}/> 
+
           <Route path="/statistics" element={<NotFound />}/> 
-          <Route path="blog" element={<NotFound />}/> 
-          <Route path="/aboutus" element={<NotFound />}/> 
+          <Route path="/blog" element={<NotFound />}/> 
+          <Route path="/aboutus" element={<NotFound />}/>
+
+          <Route path="/login" element={<NotFound />}/> 
+          <Route path="/register" element={<NotFound />}/> 
+          <Route path="/forgot-password" element={<NotFound />}/> 
+
       </Routes>
     
   )
