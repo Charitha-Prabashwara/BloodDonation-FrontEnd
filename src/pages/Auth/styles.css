@@ -8,7 +8,7 @@
 
 /* Hovering over the element triggers a visual effect of a linear gradient in the background, changing color, creating an effect when interacting with the button. */
 .Login-button:hover {
-    background: linear-gradient(to   right, #8138f6ad, #03a8f4ab);
+    background: linear-gradient(to right, #8138f6ad, #03a8f4ab);
 }
 
 /* Defining the font of the texts */

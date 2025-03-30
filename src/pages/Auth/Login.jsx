@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './styles.css'
 import loginImage from '../../assets/login.jpeg';
 
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+
+    useEffect(()=>{
+        document.title='Login'
+    },[])
 
     return (
         <section className="bg-gray-50 min-h-screen flex items-center justify-center">
