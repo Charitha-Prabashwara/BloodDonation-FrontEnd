@@ -1,6 +1,8 @@
 import axios from "axios";
 
 
+import { LoginInterceptor, UnauthorizedLoginInterceptor } from "../api/interceptors/loginInterceptor";
+
 const API = axios.create({
   baseURL: import.meta.env.VITE_REACT_APP_API_URL,// Store API URL in environment variables
   timeout: 20000, // Set timeout for requests
@@ -23,22 +25,23 @@ API.interceptors.request.use(
 // Add response interceptor for error handling
 API.interceptors.response.use(
   (response) =>{
+    try{
 
-    // //Login interception
-    // if (response.config.url.includes("/login") && response.status === 200) {
-    //   const token = response.data.token; // Adjust based on API response format
-    //   if (token) {
-    //     localStorage.setItem("authToken", token);
-    //   }
-    // }
+      //Login interception
+      LoginInterceptor(response);
+      
+    } catch (error) {
+      console.error(error);
+    }
+
+    
     return response
   },
   (error) => {
-    if (error.response?.status === 401) {
-      // Handle unauthorized access (e.g., logout)
-      localStorage.removeItem("authToken");
-      window.location.href = "/";
-    }
+
+    //Login error unauthorized interception
+    UnauthorizedLoginInterceptor(error);
+
     return Promise.reject(error);
   }
 );

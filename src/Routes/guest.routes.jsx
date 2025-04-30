@@ -6,6 +6,7 @@ import NotFound from '../pages/404';
 import ApiTest from '../pages/ApiTest';
 
 import Login from '../pages/Auth/Login';
+import Register from '../pages/Auth/Register';
 
 function GuestRouter() {
   return (
@@ -18,8 +19,8 @@ function GuestRouter() {
           <Route path="/about-us" element={<AboutUs />}/>
 
           <Route path="/login" element={<Login />}/> 
-          {/* <Route path="/register" element={<NotFound />}/> 
-          <Route path="/forgot-password" element={<NotFound />}/> */}
+          <Route path="/register" element={<Register />}/> 
+          {/* <Route path="/forgot-password" element={<NotFound />}/> */}
 
           {/* Backend api is working! TEST ROUTE */}
           <Route path="/test" element={<ApiTest />}/>  
