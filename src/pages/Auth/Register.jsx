@@ -12,7 +12,7 @@ const Register = () => {
     }, [])
 
     return (
-        <section className="bg-red-500 min-h-screen flex items-center justify-center">
+        <section className="bg-blue-200 min-h-screen flex items-center justify-center">
             <div className="bg-[#fdfefff5] flex rounded-2xl shadow-lg max-w-3xl p-4 ml-5 mr-5"> 
                 <div className=" mt-1 sm:w-1/2 px-16">
                     <h2 className="mt-2 font-bold text-2xl text-[#4527a5] text-center">Register</h2>
@@ -80,18 +80,19 @@ const Register = () => {
                         </div>
                         <button type="submit" className="rounded-sm text-white py-2 bg-[#4527a5]" onClick={(event)=>{
                             event.preventDefault();
-
+                            const firstName = document.getElementById('firstName').value;
+                            const lastName = document.getElementById('firstName').value;
                             const email = document.getElementById('email').value;
                             const password = document.getElementById('password').value;
+                            const confirmPassword = document.getElementById('confirmPassword').value;
                 
-                            API.post('/user/login', {email: email, password:password},{
-                                
-                                withCredentials:true
-                            }).then(()=>{
-                               console.log("login success");
-                               window.location.href = "/";
+                            API.post('user/register', {first_name: firstName,last_name:lastName,email: email, password:password, confirm_password:confirmPassword})
+                            .then((response)=>{
+                               console.log(response);
+                              
                             }).catch((error)=>{
-                               alert((error.response.data.message)?error.response.data.message : error.message );
+                               alert((error.response.data.message)?error.response.data.message : error.message);
+                               console.log(error)
                             })
                             
                         }}>
@@ -111,9 +112,11 @@ const Register = () => {
 
                     <div className="mt-3 text-xs flex justify-between items-center">
                         <p>
-                            <a href="#">If you don't have an account?</a>
+                            <label href="#">If you already have an account?</label>
                         </p>
-                        <button className="py-2 px-8 bg-green-400 border rounded-xl border-0">Login</button>
+                        <button className="py-2 px-8 bg-green-400 border rounded-xl border-0" onClick={()=>{
+                            window.location.href = "/login";
+                        }}>Login</button>
                     </div>
                 </div>
 

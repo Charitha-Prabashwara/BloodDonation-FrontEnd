@@ -15,7 +15,7 @@ const Login = () => {
     }, [])
 
     return (
-        <section className="bg-red-500 min-h-screen flex items-center justify-center">
+        <section className="bg-blue-200 min-h-screen flex items-center justify-center">
             <div className="bg-[#fdfefff5] flex rounded-2xl shadow-lg max-w-3xl p-4 ml-5 mr-5"> 
                 <div className=" mt-8 sm:w-1/2 px-16">
                     <h2 className="mt-10 font-bold text-2xl text-[#4527a5] text-center">Login</h2>
@@ -88,7 +88,9 @@ const Login = () => {
                         <p>
                             <a href="#">If you don't have an account?</a>
                         </p>
-                        <button className="py-2 px-8 bg-red-400 border rounded-xl border-0">Register</button>
+                        <button className="py-2 px-8 bg-red-400 border rounded-xl border-0" onClick={()=>{
+                            window.location.href = "/register";
+                        }}>Register</button>
                     </div>
                 </div>
 
