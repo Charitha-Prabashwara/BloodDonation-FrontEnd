@@ -15,6 +15,26 @@ const Login = () => {
     }, [])
 
     return (
+        <>
+        <div className="area" >
+            <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+               <li></li>
+               <li></li><li></li><li></li>
+               <li></li><li></li>
+               <li></li>
+            </ul>
+    </div >
+        <div className="context">
         <section className="bg-blue-200 min-h-screen flex items-center justify-center">
             <div className="bg-[#fdfefff5] flex rounded-2xl shadow-lg max-w-3xl p-4 ml-5 mr-5"> 
                 <div className=" mt-8 sm:w-1/2 px-16">
@@ -53,7 +73,7 @@ const Login = () => {
                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
                             </svg>
                         </div>
-                        <button type="submit" className="rounded-sm text-white py-2 bg-[#4527a5]" onClick={(event)=>{
+                        <button type="submit" className="rounded-sm text-white py-2 bg-[#4527a5] Submit-button" onClick={(event)=>{
                             event.preventDefault();
 
                             const email = document.getElementById('email').value;
@@ -88,7 +108,7 @@ const Login = () => {
                         <p>
                             <a href="#">If you don't have an account?</a>
                         </p>
-                        <button className="py-2 px-8 bg-red-400 border rounded-xl border-0" onClick={()=>{
+                        <button className="py-2 px-8 bg-red-400 border rounded-xl border-0 Button" onClick={()=>{
                             window.location.href = "/register";
                         }}>Register</button>
                     </div>
@@ -99,6 +119,8 @@ const Login = () => {
                 </div>
             </div>
         </section>
+        </div>
+        </>
     );
 
 }

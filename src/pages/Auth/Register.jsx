@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import API from '../../api/api'
 import './styles.css'
 import register from '../../assets/Auth/41490560_8935175 (4) (1).png';
@@ -6,8 +7,18 @@ import register from '../../assets/Auth/41490560_8935175 (4) (1).png';
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
 
+    // const [FormData, setFormData] = useState({
+    //     firstName:"",
+    //     lastName:"",
+    //     email:"",
+    //     password:"",
+    //     confirmPassword:""
+    // });
+    
+    const notify = () => toast('Wow so easy !');
     useEffect(()=>{
         document.title='Register'
+        
 
     }, [])
 
@@ -78,7 +89,7 @@ const Register = () => {
                             />
                             
                         </div>
-                        <button type="submit" className="rounded-sm text-white py-2 bg-[#4527a5]" onClick={(event)=>{
+                        <button type="submit" className="rounded-sm text-white py-2 bg-[#4527a5] Submit-button" onClick={(event)=>{
                             event.preventDefault();
                             const firstName = document.getElementById('firstName').value;
                             const lastName = document.getElementById('firstName').value;

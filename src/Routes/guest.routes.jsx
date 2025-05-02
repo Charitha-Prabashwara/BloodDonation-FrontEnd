@@ -21,7 +21,7 @@ function GuestRouter() {
 
           <Route path="/login" element={<Login />}/> 
           <Route path="/register" element={<Register />}/> 
-          <Route path="account-created" element={<AccountCreated/>}/>
+          <Route path="/account-created" element={<AccountCreated/>}/>
           {/* <Route path="/forgot-password" element={<NotFound />}/> */}
 
           {/* Backend api is working! TEST ROUTE */}
