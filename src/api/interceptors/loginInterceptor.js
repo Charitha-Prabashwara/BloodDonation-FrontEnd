@@ -3,8 +3,11 @@ import { setCredentials } from '../../Redux/authSlice';
 
 export const LoginInterceptor = (response)=>{
 
-    if(!response.config.url.includes("/login") && response.status === 200){return;}
-    authorized(response);
+    if(response.config.url.includes("/login") && response.status === 200){
+        authorized(response);
+        
+    }
+    
 }
 
 export const UnauthorizedLoginInterceptor = (error) =>{

@@ -31,7 +31,7 @@ API.interceptors.response.use(
       LoginInterceptor(response);
       
     } catch (error) {
-      console.error(error);
+      return Promise.reject(error);
     }
 
     
