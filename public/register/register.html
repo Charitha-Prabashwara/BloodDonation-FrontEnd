@@ -1,75 +1,495 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Blood Donation</title>
-    <link rel="stylesheet" href="register.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <!-- Include header -->
-    <div id="header-placeholder"></div>
-
-    <div class="register-container">
-        <h1>Register Now</h1>
-        <form>
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blood Link - Login</title>
+        <!-- Tailwind -->
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <!-- Alpine -->
+        <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+        <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+        <!-- AOS -->
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+        <!-- Custom style -->
+        <link rel="stylesheet" href="../css/bloodlink.css">
+        <link rel="stylesheet" href="register.css">
+        <!-- Poppins font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    </head>
+<body class="bg-gray-50">
+    <!-- navbar -->
+    <div x-data="{ open: false }" class="w-full text-gray-700 bg-white">
+        <div class="flex flex-col max-w-screen-xl px-8 mx-auto md:items-center md:justify-between md:flex-row">
+            <div class="flex flex-row items-center justify-between py-6">
+                <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                        <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
             </div>
-            <div class="form-group">
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required>
-            </div>
-            <div class="form-group">
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="" disabled selected>Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="register-btn">REGISTER</button>
-        </form>
+            <header class="header-full-width">
+                <div class="header-container">
+                    <h1 class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
+                        BLOOD<span class="text-gray-800">LINK</span>
+                    </h1>
+                    
+                    <button class="mobile-menu-btn" @click="open = !open">☰</button>
+                    
+                    <nav class="nav-menu" :class="{'active': open}">
+                        <ul>
+                            <li><a href="../home/index.html">Home</a></li>
+                            <li><a href="../home/findDonar/finddonar.html">Find Donor</a></li>
+                            <li><a href="aboutus.html" class="active">About Us</a></li>
+                            <li><a href="../home/can-you-donate.html">Can You Donate</a></li>
+                            <li><a href="../login/login.html" id="user-link">Login</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
     </div>
 
-    <!-- Include footer -->
-    <div id="footer-placeholder"></div>
+    <!-- Main Registration Form -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-red-600 mb-2">Create Account</h2>
+                    <p class="text-gray-600">Join our life-saving community today</p>
+                </div>
+                
+                <form id="registrationForm" class="space-y-6">
+                    <!-- Step 1: Personal Information -->
+                    <fieldset class="form-step active" data-step="1">
+                        <legend class="text-xl font-semibold text-red-600 mb-4 flex items-center">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-2">1</span>
+                            Personal Information
+                        </legend>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label class="block text-gray-700 mb-2">Full Name</label>
+                                <div class="relative">
+                                    <input type="text" class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition" placeholder="John Doe" required>
+                                    <i class="fas fa-user absolute left-3 top-3.5 text-gray-400"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="block text-gray-700 mb-2">Age</label>
+                                <div class="relative">
+                                    <input type="number" class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition" min="18" max="65" required>
+                                    <i class="fas fa-birthday-cake absolute left-3 top-3.5 text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="block text-gray-700 mb-2">Gender</label>
+                            <div class="flex flex-wrap gap-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="gender" value="male" class="form-radio text-red-600" checked>
+                                    <span class="ml-2">Male</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="gender" value="female" class="form-radio text-red-600">
+                                    <span class="ml-2">Female</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="gender" value="other" class="form-radio text-red-600">
+                                    <span class="ml-2">Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <div class="relative">
+                                <input type="email" class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition" placeholder="example@email.com" required>
+                                <i class="fas fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="block text-gray-700 mb-2">Phone Number</label>
+                            <div class="relative">
+                                <input type="tel" class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition" placeholder="+94 77 123 4567" required>
+                                <i class="fas fa-phone absolute left-3 top-3.5 text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="block text-gray-700 mb-2">Password</label>
+                            <div class="relative">
+                                <input type="password" id="password" class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition" required>
+                                <i class="fas fa-lock absolute left-3 top-3.5 text-gray-400"></i>
+                                <button type="button" class="absolute right-3 top-3.5 text-gray-500 hover:text-red-600" onclick="togglePassword('password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="password-strength mt-2">
+                                <div class="h-1 bg-gray-200 rounded-full overflow-hidden">
+                                    <div class="h-full bg-red-500 strength-bar" style="width: 0%"></div>
+                                </div>
+                                <span class="text-xs text-gray-500 strength-text">Password Strength</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end">
+                            <button type="button" class="next-step bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Next <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Step 2: Donation Information -->
+                    <fieldset class="form-step hidden" data-step="2">
+                        <legend class="text-xl font-semibold text-red-600 mb-4 flex items-center">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-2">2</span>
+                            Donation Information
+                        </legend>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label class="block text-gray-700 mb-2">Blood Type</label>
+                                <div class="relative">
+                                    <select class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition appearance-none" required>
+                                        <option value="">Select Blood Type</option>
+                                        <option>A+</option>
+                                        <option>A-</option>
+                                        <option>B+</option>
+                                        <option>B-</option>
+                                        <option>AB+</option>
+                                        <option>AB-</option>
+                                        <option>O+</option>
+                                        <option>O-</option>
+                                    </select>
+                                    <i class="fas fa-tint absolute left-3 top-3.5 text-gray-400"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="block text-gray-700 mb-2">Province</label>
+                                <div class="relative">
+                                    <select class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition appearance-none" required>
+                                        <option value="">Select Province</option>
+                                        <option>Central Province</option>
+                                        <option>Eastern Province</option>
+                                        <option>Northern Province</option>
+                                        <option>Southern Province</option>
+                                        <option>Western Province</option>
+                                        <option>North Western Province</option>
+                                        <option>North Central Province</option>
+                                        <option>Uva Province</option>
+                                        <option>Sabaragamuwa Province</option>
+                                    </select>
+                                    <i class="fas fa-map-marker-alt absolute left-3 top-3.5 text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="block text-gray-700 mb-2">City</label>
+                            <div class="relative">
+                                <input type="text" class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition" required>
+                                <i class="fas fa-city absolute left-3 top-3.5 text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="block text-gray-700 mb-2">Donation Frequency</label>
+                            <div class="relative">
+                                <select class="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition appearance-none">
+                                    <option value="4months" selected>Every 4 Months</option>
+                                    <option value="6months">Every 6 Months</option>
+                                    <option value="yearly">Once a Year</option>
+                                    <option value="emergency">Emergency Calls Only</option>
+                                </select>
+                                <i class="fas fa-calendar-alt absolute left-3 top-3.5 text-gray-400"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <button type="button" class="prev-step bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg transition duration-300">
+                                <i class="fas fa-arrow-left mr-2"></i> Previous
+                            </button>
+                            <button type="button" class="next-step bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                                Next <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </fieldset>
+                    
+                    <!-- Step 3: Medical Information -->
+                    <fieldset class="form-step hidden" data-step="3">
+                        <legend class="text-xl font-semibold text-red-600 mb-4 flex items-center">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-2">3</span>
+                            Medical Information
+                        </legend>
+                        
+                        <div class="space-y-4">
+                            <div class="medical-toggle">
+                                <label class="flex items-center justify-between cursor-pointer">
+                                    <span class="text-gray-700">Any long-term illness?</span>
+                                    <div class="relative">
+                                        <input type="checkbox" class="sr-only illness-toggle">
+                                        <div class="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full transition">
+                                            <div class="toggle-circle absolute left-0.5 top-0.5 bg-white h-5 w-5 rounded-full transition"></div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <textarea class="illness-desc mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition hidden" placeholder="Describe your illness"></textarea>
+                            </div>
+                            
+                            <div class="medical-toggle">
+                                <label class="flex items-center justify-between cursor-pointer">
+                                    <span class="text-gray-700">Currently taking medication?</span>
+                                    <div class="relative">
+                                        <input type="checkbox" class="sr-only medication-toggle">
+                                        <div class="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full transition">
+                                            <div class="toggle-circle absolute left-0.5 top-0.5 bg-white h-5 w-5 rounded-full transition"></div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <textarea class="medication-desc mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition hidden" placeholder="List your medications"></textarea>
+                            </div>
+                            
+                            <div class="medical-toggle">
+                                <label class="flex items-center justify-between cursor-pointer">
+                                    <span class="text-gray-700">Previous surgeries?</span>
+                                    <div class="relative">
+                                        <input type="checkbox" class="sr-only surgery-toggle">
+                                        <div class="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full transition">
+                                            <div class="toggle-circle absolute left-0.5 top-0.5 bg-white h-5 w-5 rounded-full transition"></div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <textarea class="surgery-desc mt-2 w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-1 focus:ring-red-500 transition hidden" placeholder="Describe your surgeries"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mt-6">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="terms" class="form-checkbox h-5 w-5 text-red-600" required>
+                                <span class="ml-2 text-gray-700">I agree to the <a href="#" class="text-red-600 hover:underline">Terms and Conditions</a></span>
+                            </label>
+                        </div>
+                        
+                        <div class="flex justify-between mt-8">
+                            <button type="button" class="prev-step bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg transition duration-300">
+                                <i class="fas fa-arrow-left mr-2"></i> Previous
+                            </button>
+                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 transform hover:scale-105">
+                                Register Now <i class="fas fa-heartbeat ml-2"></i>
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+                
+                <div class="text-center mt-6 text-gray-600">
+                    <p>Already have an account? <a href="../login/login.html" class="text-red-600 font-medium hover:underline">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
 
+    <!-- Footer (matches login page exactly) -->
+    <footer class="bg-gray-800 text-white pt-12 pb-6">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="footer-section">
+                    <h3 class="text-xl font-bold mb-4 text-red-400">BLOODLINK</h3>
+                    <p class="text-gray-400">Connecting blood donors with those in need across Sri Lanka.</p>
+                    <div class="flex mt-4 space-x-4">
+                        <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">24/7</span>
+                        <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">365 Days</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../home/index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="../home/findDonar/finddonar.html" class="text-gray-400 hover:text-white transition">Find Donor</a></li>
+                        <li><a href="../aboutus/aboutus.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="../home/can-you-donate.html" class="text-gray-400 hover:text-white transition">Can You Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold mb-4">Account</h4>
+                    <ul class="space-y-2">
+                        <li><a href="../login/login.html" class="text-gray-400 hover:text-white transition">Login</a></li>
+                        <li><a href="../register/register.html" class="text-gray-400 hover:text-white transition">Register</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Forgot Password</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+                    <p class="text-gray-400 mb-2">Sri Lanka</p>
+                    <p class="text-gray-400 mb-4"><a href="mailto:contact@bloodlink.lk" class="hover:text-white transition">contact@bloodlink.lk</a></p>
+                    <div class="flex space-x-4 text-xl">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 text-sm">
+                <p>© 2024 BloodLink. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        // Load header
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-                // Change USER to LOGIN in header
-                const userLink = document.getElementById('user-link');
-                if (userLink) {
-                    userLink.textContent = 'LOGIN';
-                    userLink.href = 'login.html';
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Password Visibility Toggle
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            const icon = input.nextElementSibling.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        // Password Strength Indicator
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.querySelector('.strength-bar');
+            const strengthText = document.querySelector('.strength-text');
+            let strength = 0;
+            
+            // Check password length
+            if (password.length > 0) strength += 20;
+            if (password.length >= 8) strength += 20;
+            
+            // Check for uppercase letters
+            if (/[A-Z]/.test(password)) strength += 20;
+            
+            // Check for numbers
+            if (/[0-9]/.test(password)) strength += 20;
+            
+            // Check for special characters
+            if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+            
+            // Update strength bar
+            strengthBar.style.width = strength + '%';
+            
+            // Update color and text
+            if (strength < 40) {
+                strengthBar.style.backgroundColor = '#ef4444';
+                strengthText.textContent = 'Weak';
+            } else if (strength < 70) {
+                strengthBar.style.backgroundColor = '#f59e0b';
+                strengthText.textContent = 'Moderate';
+            } else {
+                strengthBar.style.backgroundColor = '#10b981';
+                strengthText.textContent = 'Strong';
+            }
+        });
+
+        // Form Navigation
+        const formSteps = document.querySelectorAll('.form-step');
+        let currentStep = 0;
+        
+        // Show first step
+        showStep(currentStep);
+        
+        // Next button functionality
+        document.querySelectorAll('.next-step').forEach(button => {
+            button.addEventListener('click', function() {
+                // Validate current step before proceeding
+                const currentFormStep = formSteps[currentStep];
+                const inputs = currentFormStep.querySelectorAll('input[required], select[required]');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value) {
+                        input.classList.add('border-red-500');
+                        isValid = false;
+                    } else {
+                        input.classList.remove('border-red-500');
+                    }
+                });
+                
+                if (isValid) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    alert('Please fill in all required fields before proceeding.');
                 }
             });
-
-        // Load footer
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
+        });
+        
+        // Previous button functionality
+        document.querySelectorAll('.prev-step').forEach(button => {
+            button.addEventListener('click', function() {
+                currentStep--;
+                showStep(currentStep);
             });
+        });
+        
+        function showStep(index) {
+            // Hide all steps
+            formSteps.forEach(step => {
+                step.classList.add('hidden');
+                step.classList.remove('active');
+            });
+            
+            // Show current step
+            formSteps[index].classList.remove('hidden');
+            formSteps[index].classList.add('active');
+        }
+
+        // Toggle medical information fields
+        document.querySelectorAll('.medical-toggle input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const descField = this.closest('.medical-toggle').querySelector('textarea');
+                const toggleBg = this.nextElementSibling;
+                const toggleCircle = toggleBg.querySelector('.toggle-circle');
+                
+                if (this.checked) {
+                    descField.classList.remove('hidden');
+                    toggleBg.classList.add('bg-red-600', 'border-red-600');
+                    toggleBg.classList.remove('bg-gray-200', 'border-gray-200');
+                    toggleCircle.classList.add('translate-x-5');
+                } else {
+                    descField.classList.add('hidden');
+                    toggleBg.classList.remove('bg-red-600', 'border-red-600');
+                    toggleBg.classList.add('bg-gray-200', 'border-gray-200');
+                    toggleCircle.classList.remove('translate-x-5');
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message
+            alert('Registration successful! Thank you for joining our life-saving community.');
+            
+            // Reset form
+            this.reset();
+            currentStep = 0;
+            showStep(currentStep);
+            
+            // Reset password strength
+            document.querySelector('.strength-bar').style.width = '0';
+            document.querySelector('.strength-text').textContent = 'Password Strength';
+        });
     </script>
 </body>
 </html>
