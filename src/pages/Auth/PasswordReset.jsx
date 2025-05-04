@@ -19,9 +19,10 @@ const PasswordRest = () => {
     const [confirmPassword, setconfirmPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
 
-    const [validateState, setvalidateState] = useState(true);
-    const [errorMessage, seterrorMessage] = useState(null);
+    const [errorState, setErrorState] = useState(false)
+    const [errorMessage, seterrorMessage] = useState('');
 
+  
     const navigate = useNavigate();
     
     const redirect = (target) => {
@@ -63,17 +64,23 @@ const makeResponse = ()=>{
       // Handles API error and backend-down (network) errors
         if (error.response) {
             // Server responded with a status code outside 2xx
-            toast.error(error.response.data.message || "An error occurred");
-            seterrorMessage(error.response.data.message)
-            setvalidateState(false);
-
+            const message = error.response.data.message || "An error occurred";
+            toast.error(message)
+            setErrorState(true);
+            seterrorMessage(message)
+           
         } else if (error.request) {
             // Request was made but no response (e.g., backend is down)
-            toast.error("Cannot connect to server. Please try again later.");
+            const message ="Cannot connect to server. Please try again later.";
+            toast.error(message);
+            setErrorState(true);
+            seterrorMessage(message)
         } else {
             // Something else went wrong
-            toast.error(error.message);
-           
+            const message = error.message;
+            toast.error(message);
+            setErrorState(true);
+            seterrorMessage(message)
         }
     }).finally(()=>{
         setSubmitClick(false)
@@ -89,33 +96,56 @@ const makeResponse = ()=>{
 
     return (
         <>
-        {!token && (
+        {(!token && !errorState) &&(
             <>
             <section className="bg-blue-200 min-h-screen flex items-center justify-center">
             <div className="bg-[#fdfefff5] flex flex-col items-center rounded-2xl shadow-lg max-w-3xl p-8 ml-5 mr-5 text-center">
                  <h2 className="text-2xl font-bold text-[#4527a5] mb-4">
-                            {errorMessage || "Invalid Password Reset Attempt"}
+                            Invalid Password Reset Attempt
                 </h2>
                 <p className="text-lg text-gray-700">
-                    {errorMessage && (
-                        <>
-                         {errorMessage}
-                        </>
-                    )}
-                    {!errorMessage && (
+                                   
                         <>
                         Your account verification request is invalid because a verification token wasn't found in your request.
                         </>
-                    )}
-                    
                 </p>
             </div>
             </section>
             
             </>
-        )}
       
-        {token && (
+        
+        )}
+
+        {(token && errorState)&&(
+            <>
+                <section className="bg-blue-200 min-h-screen flex items-center justify-center">
+            <div className="bg-[#fdfefff5] flex flex-col items-center rounded-2xl shadow-lg max-w-3xl p-8 ml-5 mr-5 text-center">
+                 <h2 className="text-2xl font-bold text-[#4527a5] mb-4">
+                            {errorMessage ||"Invalid Password Reset Attempt"}
+                </h2>
+                <p className="text-lg text-gray-700">
+                                   
+                        <>
+                        Your account verification request is invalid because a verification token wasn't found in your request.
+                        </>
+                </p>
+
+               
+                        <button
+                            className="mt-6 py-2 px-6 bg-[#4527a5] text-white rounded-lg hover:bg-[#341d8e] transition"
+                            onClick={() => window.location.reload()}
+                        >
+                            Retry
+                        </button>
+            </div>
+           
+            </section>
+            </>
+        )}
+
+            
+        {(token && !errorState) && (
             <>
              <section className="bg-blue-200 min-h-screen flex items-center justify-center">
             <div className="bg-[#fdfefff5] flex rounded-2xl shadow-lg max-w-3xl p-4 ml-5 mr-5"> 
