@@ -99,11 +99,15 @@ const makeResponse = ()=>{
                 <p className="text-lg text-gray-700">
                     {errorMessage && (
                         <>
-                         response error related info
+                         {errorMessage}
                         </>
                     )}
-                    {!}
-                    Your account verification request is invalid because a verification token wasn't found in your request.
+                    {!errorMessage && (
+                        <>
+                        Your account verification request is invalid because a verification token wasn't found in your request.
+                        </>
+                    )}
+                    
                 </p>
             </div>
             </section>
