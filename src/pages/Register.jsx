@@ -2,13 +2,13 @@ import React from "react";
 const HtmlRenderer = () => {
     return (
       <iframe
-        src="/aboutus/aboutus.html"
+        src="/register/register.html"
         style={{ width: '100%', height: '100vh', border: 'none' }}
         title="HTML Renderer"
       />
     );
   };
-function AboutUs(){
+function Register(){
     return(
       <>
       <HtmlRenderer />
@@ -16,4 +16,4 @@ function AboutUs(){
     )
 }
 
-export default AboutUs;
+export default Register;

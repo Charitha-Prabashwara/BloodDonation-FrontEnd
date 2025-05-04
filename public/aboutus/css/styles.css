@@ -1,0 +1,131 @@
+/* Import base styles from bloodlink.css */
+@import url('../../../home/css/bloodlink.css');
+
+/* Magazine Style Additions */
+
+/* Magazine Cover */
+.magazine-cover {
+    background-color: #f9f9f9;
+}
+
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.magazine-image-container {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.magazine-main-image {
+    border-radius: 4px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.magazine-image-border {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid rgba(209, 0, 0, 0.3);
+    border-radius: 4px;
+    z-index: 1;
+}
+
+/* Full Width Image Section */
+.full-width-image {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/b3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+}
+
+/* Milestones */
+.milestone-card {
+    background: white;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.milestone-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.milestone-year {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d10000;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.milestone-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.milestone-description {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Team Members */
+.team-member-card {
+    text-align: center;
+}
+
+.team-member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 3px solid #ffebee;
+}
+
+.team-member-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    font-family: 'Playfair Display', serif;
+}
+
+.team-member-title {
+    color: #d10000;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.team-member-bio {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .magazine-cover {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+    
+    .magazine-image-container {
+        margin-top: 40px;
+    }
+    
+    .full-width-image {
+        background-attachment: scroll;
+    }
+}
