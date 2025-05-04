@@ -10,6 +10,9 @@ import UserRoutes from './Routes/user.routes';
 import DonorRoutes from './Routes/donor.routes';
 import DoctorRoutes from './Routes/doctor.routes';
 import AssistantRoutes from './Routes/assistant.routes';
+import AboutUs from './pages/AboutUs';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
       <Routes>
         {/* Guest Routes */}
         <Route path="/*" element={<GuestRoutes/>} />
+        <Route path="/aboutus*" element={<AboutUs/>} />
+        <Route path="/login*" element={<Login/>} />
+        <Route path="/register*" element={<Register/>} />
 
         {/* User Routes */}
         <Route path="/user/*" element={<UserRoutes />} />

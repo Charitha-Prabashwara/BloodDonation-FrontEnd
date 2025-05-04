@@ -15,7 +15,7 @@ function GuestRouter() {
 
           <Route path="/statistics" element={<NotFound />}/> 
           <Route path="/blog" element={<Blog />}/> 
-          <Route path="/about-us" element={<AboutUs />}/>
+          <Route path="/aboutus" element={<AboutUs />}/>
 
           <Route path="/login" element={<Login />}/> 
           {/* <Route path="/register" element={<NotFound />}/> 
@@ -25,7 +25,7 @@ function GuestRouter() {
           <Route path="/test" element={<ApiTest />}/>  
 
       </Routes>
-    
+
   )
 }
 export default GuestRouter;

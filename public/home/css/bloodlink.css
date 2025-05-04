@@ -1,0 +1,565 @@
+/* bloodlink.css - Main Stylesheet for Blood Donation Website */
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+/* Header Styles */
+.header-full-width {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1000;
+    padding: 15px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo h1 {
+    color: #d10000;
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-left: 35px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-menu a:hover {
+    color: #d10000;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #d10000;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+#user-link {
+    color: #d10000;
+    font-weight: 600;
+    background-color: rgba(209, 0, 0, 0.1);
+    padding: 8px 20px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+#user-link:hover {
+    background-color: rgba(209, 0, 0, 0.2);
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #d10000;
+}
+
+/* Hero Section */
+.bg-red-50 {
+    background-color: #ffebee;
+}
+
+/* Center content vertically */
+.flex-col.items-start {
+    height: 100%;
+}
+
+/* Ensure image container has proper height */
+#donation {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #d10000;
+    border-color: #d10000;
+}
+
+.btn-danger:hover {
+    background-color: #b00000;
+    border-color: #b00000;
+    transform: translateY(-2px);
+}
+
+/* Card Styles */
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Utility Classes */
+.text-red-600 {
+    color: #d10000;
+}
+
+.bg-red-100 {
+    background-color: #ffcdd2;
+}
+
+.bg-red-200 {
+    background-color: #ef9a9a;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Animations */
+.floating { 
+    animation-name: floating; 
+    animation-duration: 3s; 
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out;
+} 
+
+@keyframes floating { 
+    0% { transform: translate(0, 0px); } 
+    50% { transform: translate(0, 8px); } 
+    100% { transform: translate(0, -0px); }  
+} 
+
+.floating-4 { 
+    animation-name: floating; 
+    animation-duration: 4s; 
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out;
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Footer Styles */
+.footer-container {
+    background-color: #222;
+    color: #fff;
+    padding: 50px 0 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.footer-section h2 {
+    color: #d10000;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.footer-section h3, .footer-section h5 {
+    color: #d10000;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.footer-section p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.availability p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #d10000;
+}
+
+.footer-section a[href^="mailto:"] {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-section a[href^="mailto:"]:hover {
+    color: #d10000;
+}
+
+/* Newsletter Styles */
+.footer-section .input-group {
+    display: flex;
+    margin-top: 15px;
+}
+
+.footer-section .form-control {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+.footer-section .btn-danger {
+    background-color: #d10000;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.footer-section .btn-danger:hover {
+    background-color: #b00000;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #111;
+    margin-top: 30px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .header-container {
+        padding: 15px 5%;
+    }
+    
+    .nav-menu li {
+        margin-left: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transform: translateY(-150%);
+        transition: transform 0.4s ease;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+    }
+    
+    .nav-menu ul {
+        flex-direction: column;
+    }
+    
+    .nav-menu li {
+        margin: 15px 0;
+    }
+    
+    #user-link {
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-section {
+        margin-bottom: 30px;
+    }
+
+    .footer-section .input-group {
+        flex-direction: column;
+    }
+
+    .footer-section .form-control {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .footer-section .btn-danger {
+        border-radius: 4px;
+        padding: 10px;
+    }
+}
+
+/* Wave Divider */
+.wave-divider {
+    position: relative;
+    height: 150px;
+    overflow: hidden;
+}
+
+.wave-divider svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Custom Transitions */
+.transform {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+.hover\:scale-110:hover {
+    transform: scale(1.1);
+}
+
+/* Container */
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Additional Blood Donation Specific Styles */
+.blood-drop {
+    width: 50px;
+    height: 50px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 94'%3E%3Cpath d='M41.9995 93.3333C19.3328 93.3333 0.666178 74.6667 0.666178 52C0.666178 29.3333 41.9995 0.666656 41.9995 0.666656C41.9995 0.666656 83.3328 29.3333 83.3328 52C83.3328 74.6667 64.6662 93.3333 41.9995 93.3333Z' fill='%23D10000'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: pulse 1.5s infinite;
+}
+
+.donation-process-step {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+}
+
+.donation-process-step::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: #d10000;
+}
+
+.donation-process-step:last-child::before {
+    height: 50%;
+}
+
+.donation-process-step-number {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    background-color: #d10000;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Testimonial Styles */
+.testimonial-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Eligibility Checklist */
+.eligibility-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.eligibility-icon {
+    flex-shrink: 0;
+    margin-right: 1rem;
+    color: #d10000;
+}
+
+/* Find Donor Section Styling */
+#blood-type, #city, #province {
+    transition: all 0.3s ease;
+}
+
+#blood-type:focus, #city:focus, #province:focus {
+    border-color: #d10000;
+    box-shadow: 0 0 0 3px rgba(209, 0, 0, 0.2);
+}
