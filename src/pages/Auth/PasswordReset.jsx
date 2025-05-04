@@ -19,6 +19,9 @@ const PasswordRest = () => {
     const [confirmPassword, setconfirmPassword] = useState("")
     const [showPassword, setShowPassword] = useState(false)
 
+    const [validateState, setvalidateState] = useState(true);
+    const [errorMessage, seterrorMessage] = useState(null);
+
     const navigate = useNavigate();
     
     const redirect = (target) => {
@@ -30,6 +33,7 @@ const PasswordRest = () => {
     if(!token){
         toast.warning("Invalid password reset attempt")
     }
+
 
     
 const makeResponse = ()=>{
@@ -47,12 +51,12 @@ const makeResponse = ()=>{
     
 
     setSubmitClick(true);
-    API.post('/user/reset-password-request', {email: email},{}).then((response)=>{
+    API.post('/user/reset-password', {token: token, password:password, confirm_password:confirmPassword},{}).then((response)=>{
        
         const message = response.data.message;
         setSubmitClick(false)
         toast.success(message);
-        redirect('/forgot-password-ready')
+        redirect('/login')
 
         
     }).catch((error)=>{
@@ -60,6 +64,9 @@ const makeResponse = ()=>{
         if (error.response) {
             // Server responded with a status code outside 2xx
             toast.error(error.response.data.message || "An error occurred");
+            seterrorMessage(error.response.data.message)
+            setvalidateState(false);
+
         } else if (error.request) {
             // Request was made but no response (e.g., backend is down)
             toast.error("Cannot connect to server. Please try again later.");
@@ -87,11 +94,17 @@ const makeResponse = ()=>{
             <section className="bg-blue-200 min-h-screen flex items-center justify-center">
             <div className="bg-[#fdfefff5] flex flex-col items-center rounded-2xl shadow-lg max-w-3xl p-8 ml-5 mr-5 text-center">
                  <h2 className="text-2xl font-bold text-[#4527a5] mb-4">
-                            Invalid Password Reset Attempt
+                            {errorMessage || "Invalid Password Reset Attempt"}
                 </h2>
                 <p className="text-lg text-gray-700">
+                    {errorMessage && (
+                        <>
+                         response error related info
+                        </>
+                    )}
+                    {!}
                     Your account verification request is invalid because a verification token wasn't found in your request.
-                        </p>
+                </p>
             </div>
             </section>
             
@@ -108,7 +121,7 @@ const makeResponse = ()=>{
                     Give The Gift Of Life
                     </p>
 
-                    <form className="flex flex-col gap-4">
+                    <form className="flex flex-col gap-5">
                     <div className="relative">
                             <input
                                 className="p-2 mt-3 rounded-sm border w-full  border-gray-300"
