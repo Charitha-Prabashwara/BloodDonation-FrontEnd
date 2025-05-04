@@ -4,45 +4,69 @@ import './styles.css'
 import loginImage from '../../assets/Auth/41490560_8935175 (1).png';
 
 import { toast } from 'react-toastify';
-//import { useNavigate } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
 
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-    const [showPassword, setShowPassword] = useState(false);
+const PasswordRest = () => {
+    const [searchParams] = useSearchParams();
+    const token = searchParams.get('token');
+    
     const [submitClick, setSubmitClick] = useState(false);
 
-    const [email, setemail] = useState("");
+    //const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
+    const [confirmPassword, setconfirmPassword] = useState("")
+    const [showPassword, setShowPassword] = useState(false)
+
+    const [validateState, setvalidateState] = useState(true);
+    const [errorMessage, seterrorMessage] = useState(null);
+
+    const navigate = useNavigate();
+    
+    const redirect = (target) => {
+       
+        navigate(target);
+      
+    };
+
+    if(!token){
+        toast.warning("Invalid password reset attempt")
+    }
 
 
+    
 const makeResponse = ()=>{
-    // form validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        toast.warning("Please enter a valid email address");
+
+    if(password !== confirmPassword){
+        toast.warning("Password and Confirm Password doesn't match")
+        return
+    }
+   
+    if (password.length<6 || confirmPassword.length < 6) {
+        toast.warning("Password length too small");
         return;
     }
 
-    if (password.length < 6) {
-        toast.warning("Password must be at least 6 characters");
-        return;
-    }
-
+    
 
     setSubmitClick(true);
-    API.post('/user/login', {email: email, password:password},{
-        withCredentials:true
-    }).then((response)=>{
+    API.post('/user/reset-password', {token: token, password:password, confirm_password:confirmPassword},{}).then((response)=>{
        
         const message = response.data.message;
         setSubmitClick(false)
         toast.success(message);
+        redirect('/login')
+
         
     }).catch((error)=>{
       // Handles API error and backend-down (network) errors
         if (error.response) {
             // Server responded with a status code outside 2xx
             toast.error(error.response.data.message || "An error occurred");
+            seterrorMessage(error.response.data.message)
+            setvalidateState(false);
+
         } else if (error.request) {
             // Request was made but no response (e.g., backend is down)
             toast.error("Cannot connect to server. Please try again later.");
@@ -59,42 +83,55 @@ const makeResponse = ()=>{
 }
 
     useEffect(()=>{
-        document.title='Login'
+        document.title='Forgot Password'
 
     }, [])
 
     return (
         <>
+        {!token && (
+            <>
+            <section className="bg-blue-200 min-h-screen flex items-center justify-center">
+            <div className="bg-[#fdfefff5] flex flex-col items-center rounded-2xl shadow-lg max-w-3xl p-8 ml-5 mr-5 text-center">
+                 <h2 className="text-2xl font-bold text-[#4527a5] mb-4">
+                            {errorMessage || "Invalid Password Reset Attempt"}
+                </h2>
+                <p className="text-lg text-gray-700">
+                    {errorMessage && (
+                        <>
+                         response error related info
+                        </>
+                    )}
+                    {!}
+                    Your account verification request is invalid because a verification token wasn't found in your request.
+                </p>
+            </div>
+            </section>
+            
+            </>
+        )}
       
-        
-        <section className="bg-blue-200 min-h-screen flex items-center justify-center">
+        {token && (
+            <>
+             <section className="bg-blue-200 min-h-screen flex items-center justify-center">
             <div className="bg-[#fdfefff5] flex rounded-2xl shadow-lg max-w-3xl p-4 ml-5 mr-5"> 
                 <div className=" mt-8 sm:w-1/2 px-16">
-                    <h2 className="mt-10 font-bold text-2xl text-[#4527a5] text-center">Login</h2>
+                    <h2 className="mt-10 font-bold text-2xl text-[#4527a5] text-center">Reset Password</h2>
                     <p className="text-xl mt-2 text-[#ef0b0b] text-opacity-70 text-center">
                     Give The Gift Of Life
                     </p>
 
-                    <form className="flex flex-col gap-4">
-                        <input
-                            className="p-2 mt-8 rounded-sm border border-gray-300"
-                            type="email"
-                            name="email"
-                            placeholder="Your email"
-                            id="email"
-                            value={email}
-                            onChange={(e)=>(setemail(e.target.value))}
-                            
-                        />
-                        <div className="relative">
+                    <form className="flex flex-col gap-5">
+                    <div className="relative">
                             <input
-                                className="p-2 mt-0.5 rounded-sm border w-full  border-gray-300"
+                                className="p-2 mt-3 rounded-sm border w-full  border-gray-300"
                                 type={showPassword ? "text" : "password"}
                                 name="password"
-                                placeholder="Your password"
+                                placeholder="password"
                                 id="password"
                                 value={password}
                                 onChange={(e)=>(setpassword(e.target.value))}
+                               
                             />
                             <svg
                                 onClick={() => setShowPassword(!showPassword)}
@@ -109,6 +146,20 @@ const makeResponse = ()=>{
                                 <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
                             </svg>
                         </div>
+
+                        <div className="relative">
+                            <input
+                                className="p-2 mt-0.5 rounded-sm border w-full  border-gray-300"
+                                type="password"
+                                name="confirmPassword"
+                                placeholder="confirm password"
+                                id="confirmPassword"
+                                value={confirmPassword}
+                                onChange={(e)=>(setconfirmPassword(e.target.value))}
+                               
+                            />
+                            
+                        </div>
                         <button type="submit" className="rounded-sm text-white py-2 bg-[#4527a5] Submit-button" onClick={(event)=>{
                             event.preventDefault();
                             {makeResponse()}
@@ -121,7 +172,7 @@ const makeResponse = ()=>{
                                 </svg>
                             )}
                             
-                            Login
+                            Reset Password
 
                         </button>
                     </form>
@@ -133,7 +184,7 @@ const makeResponse = ()=>{
                   
 
                     <p className="mt-5 text-xs border-b border-gray-400 py-4">
-                        <a href="/forgot-password">Forgot Your password?</a>
+                        
                     </p>
 
                     <div className="mt-3 text-xs flex justify-between items-center">
@@ -151,10 +202,13 @@ const makeResponse = ()=>{
                 </div>
             </div>
         </section>
+            </>
+        )}
+       
        
         </>
     );
 
 }
 
-export default Login
+export default PasswordRest
