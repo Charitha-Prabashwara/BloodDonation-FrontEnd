@@ -166,7 +166,7 @@ const Register = () => {
                   
 
                     <p className="mt-5 text-xs border-b border-gray-400 py-4">
-                        <a href="#">Forgot Your password?</a>
+                        
                     </p>
 
                     <div className="mt-3 text-xs flex justify-between items-center">
