@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story - Blood Link</title>
+    <!-- Tailwind -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Alpine -->
+    <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Custom style -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <!-- Poppins font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Playfair Display for headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="antialiased">
+    <!-- navbar -->
+    <div x-data="{ open: false }" class="w-full text-gray-700 bg-white">
+        <div class="flex flex-col max-w-screen-xl px-8 mx-auto md:items-center md:justify-between md:flex-row">
+            <div class="flex flex-row items-center justify-between py-6">
+                <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                        <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <header class="header-full-width">
+                <div class="header-container">
+                    <h1 class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
+                        BLOOD<span class="text-gray-800">LINK</span>
+                    </h1>
+                    
+                    <button class="mobile-menu-btn" @click="open = !open">☰</button>
+                    
+                    <nav class="nav-menu" :class="{'active': open}">
+                        <ul>
+                            <li><a href="../home/index.html">Home</a></li>
+                            <li><a href="../home/findDonar/finddonar.html">Find Donor</a></li>
+                            <li><a href="aboutus.html" class="active">About Us</a></li>
+                            <li><a href="../home/can-you-donate.html">Can You Donate</a></li>
+                            <li><a href="../login/login.html" id="user-link">USER</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- Magazine Cover Section -->
+    <section class="magazine-cover">
+        <div class="container mx-auto px-4 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-serif font-bold text-gray-800 mb-6 leading-tight">
+                        The Blood Link<br> 
+                        <span class="text-red-600">Story</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 max-w-lg">
+                        A journey of compassion, innovation, and life-saving connections across Sri Lanka
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-px bg-gray-400"></div>
+                        <span class="text-sm text-gray-500">SCROLL TO EXPLORE</span>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="magazine-image-container">
+                        <img src="img/b1.jpg" alt="Blood Link Story" class="magazine-main-image">
+                        <div class="magazine-image-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-serif font-bold text-gray-800 mb-6">Our Origin</h2>
+                <div class="w-20 h-px bg-red-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    In 2015, a group of medical students at the University of Colombo witnessed a tragic event that would change their lives forever. A young mother in labor needed an emergency blood transfusion, but the hospital's supply of her rare blood type had run out. Despite frantic efforts to locate a donor, they were too late. This heartbreaking experience became the catalyst for what is now Sri Lanka's most comprehensive blood donation platform.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="img/b2.jpg" alt="Founding Team" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div>
+                    <h3 class="text-2xl font-serif font-bold text-gray-800 mb-4">From Tragedy to Transformation</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        What began as a simple spreadsheet shared among university students quickly evolved into a nationwide movement. The founders realized that the problem wasn't a lack of willing donors, but rather the absence of an efficient system to connect them with those in need at critical moments.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Through tireless effort and innovative thinking, Blood Link developed a platform that now serves all nine provinces of Sri Lanka, partnering with major hospitals and blood banks to ensure no patient suffers due to lack of access to life-saving blood donations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Width Image Section -->
+    <section class="full-width-image py-20">
+        <div class="container mx-auto px-4">
+            <div class="bg-gray-100 p-12 text-center max-w-4xl mx-auto">
+                <blockquote class="text-2xl font-serif italic text-gray-800 mb-6">
+                    "Every drop of blood donated is a story of hope, a potential life saved. We're not just connecting donors with recipients - we're facilitating miracles."
+                </blockquote>
+                <p class="text-red-600 font-bold">— Dr. Sanjaya Perera, Medical Director</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-serif font-bold text-gray-800 mb-6">Our Journey</h2>
+                <div class="w-20 h-px bg-red-600 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="milestone-card">
+                    <div class="milestone-year">2015</div>
+                    <h3 class="milestone-title">The Beginning</h3>
+                    <p class="milestone-description">Founded by medical students after witnessing a critical blood shortage tragedy</p>
+                </div>
+                
+                <div class="milestone-card">
+                    <div class="milestone-year">2016</div>
+                    <h3 class="milestone-title">First Mobile App</h3>
+                    <p class="milestone-description">Launched our donor matching platform in Colombo</p>
+                </div>
+                
+                <div class="milestone-card">
+                    <div class="milestone-year">2018</div>
+                    <h3 class="milestone-title">National Expansion</h3>
+                    <p class="milestone-description">Partnered with 10 major hospitals across Sri Lanka</p>
+                </div>
+                
+                <div class="milestone-card">
+                    <div class="milestone-year">2020</div>
+                    <h3 class="milestone-title">Pandemic Response</h3>
+                    <p class="milestone-description">Developed COVID-safe protocols for blood donation</p>
+                </div>
+                
+                <div class="milestone-card">
+                    <div class="milestone-year">2022</div>
+                    <h3 class="milestone-title">AI Matching System</h3>
+                    <p class="milestone-description">Implemented intelligent donor-recipient matching</p>
+                </div>
+                
+                <div class="milestone-card">
+                    <div class="milestone-year">2024</div>
+                    <h3 class="milestone-title">25,000+ Donors</h3>
+                    <p class="milestone-description">Grew to serve all 9 provinces with 50+ hospital partners</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-serif font-bold text-gray-800 mb-6">Meet The Visionaries</h2>
+                <div class="w-20 h-px bg-red-600 mx-auto mb-8"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    The passionate team behind Blood Link's life-saving mission
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="team-member-card">
+                    <img src="img/doctor.png" alt="Dr. Sanjaya Perera" class="team-member-image">
+                    <h3 class="team-member-name">Dr. Sanjaya Perera</h3>
+                    <p class="team-member-title">Medical Director</p>
+                    <p class="team-member-bio">
+                        Oversees all medical protocols and ensures donor/recipient safety standards
+                    </p>
+                </div>
+                
+                <div class="team-member-card">
+                    <img src="img/girl.png" alt="Nayomi Silva" class="team-member-image">
+                    <h3 class="team-member-name">Nayomi Silva</h3>
+                    <p class="team-member-title">Donor Coordinator</p>
+                    <p class="team-member-bio">
+                        Manages donor relations and community outreach programs
+                    </p>
+                </div>
+                
+                <div class="team-member-card">
+                    <img src="img/girl-with-books.png" alt="Kavindi Fernando" class="team-member-image">
+                    <h3 class="team-member-name">Kavindi Fernando</h3>
+                    <p class="team-member-title">Technology Lead</p>
+                    <p class="team-member-bio">
+                        Develops and maintains our digital platform and mobile applications
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-red-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-serif font-bold mb-6">Be Part of Our Story</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Join our community of life-savers and help write the next chapter
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="../register/register.html" class="bg-white text-red-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300">
+                    Become a Donor
+                </a>
+                <a href="#" class="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-red-600 transition duration-300">
+                    Partner With Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h2>BLOOD LINK</h2>
+                <p>Are you in need of blood or looking to make a life-saving donation in Sri Lanka? Our Blood Donation Finder website is here to connect donors with those in need.</p>
+                <div class="availability">
+                    <p><strong>24 X 7</strong></p>
+                    <p><strong>365 Days</strong></p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Other Links</h3>
+                <ul>
+                    <li><a href="../home/index.html">Home</a></li>
+                    <li><a href="../home/findDonar/finddonar.html">Find donor</a></li>
+                    <li><a href="aboutus.html">About us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                    <li><a href="../register/register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Sri Lanka</p>
+                <p><a href="mailto:contact@blooddonation.lk">contact@blooddonation.lk</a></p>
+            </div>
+            <div class="footer-section">
+                <h5>Newsletter</h5>
+                <p>Subscribe to our newsletter for updates</p>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your email">
+                    <button class="btn btn-danger" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 All Rights Reserved by Blood Finder</p>
+        </div>
+    </footer>
+
+    <!-- AOS init -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

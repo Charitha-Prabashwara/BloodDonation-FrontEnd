@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Link - Login</title>
+    <!-- Tailwind -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Alpine -->
+    <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Custom style -->
+    <link rel="stylesheet" href="../css/bloodlink.css">
+    <link rel="stylesheet" href="login.css">
+    <!-- Poppins font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+</head>
+<body class="antialiased">
+    <!-- navbar -->
+    <div x-data="{ open: false }" class="w-full text-gray-700 bg-white">
+        <div class="flex flex-col max-w-screen-xl px-8 mx-auto md:items-center md:justify-between md:flex-row">
+            <div class="flex flex-row items-center justify-between py-6">
+                <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                        <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <header class="header-full-width">
+                <div class="header-container">
+                    <h1 class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
+                        BLOOD<span class="text-gray-800">LINK</span>
+                    </h1>
+                    
+                    <button class="mobile-menu-btn" @click="open = !open">☰</button>
+                    
+                    <nav class="nav-menu" :class="{'active': open}">
+                        <ul>
+                            <li><a href="../home/index.html">Home</a></li>
+                            <li><a href="../home/findDonar/finddonar.html">Find Donor</a></li>
+                            <li><a href="aboutus.html" class="active">About Us</a></li>
+                            <li><a href="../home/can-you-donate.html">Can You Donate</a></li>
+                            <li><a href="../login/login.html" id="user-link">USER</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
+    </div>
+
+        <!-- Login Section -->
+        <div class="login-wrapper">
+            <div class="login-content">
+                <div class="login-form-container">
+                    <div class="login-box">
+                        <h2 class="login-title">Login</h2>
+                        <form class="login-form">
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="login-button">LOGIN</button>
+                        </form>
+                        <div class="register-link">
+                            Not Registered? <a href="../register/register.html">Register Now</a>
+                        </div>
+                        <div class="welcome-back">
+                            Welcome back
+                        </div>
+                    </div>
+                </div>
+                <div class="login-image">
+                    <!-- <div class="image-overlay"></div>
+                    <div class="image-content">
+                        <h2>Save Lives With Your Donation</h2>
+                        <p>Join our community of life-savers and make a difference today</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h2>BLOOD LINK</h2>
+                <p>Are you in need of blood or looking to make a life-saving donation in Sri Lanka? Our Blood Donation Finder website is here to connect donors with those in need.</p>
+                <div class="availability">
+                    <p><strong>24 X 7</strong></p>
+                    <p><strong>365 Days</strong></p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Other Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../findDonar/finddonar.html">Find donor</a></li>
+                    <li><a href="../aboutus/aboutus.html">About us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                    <li><a href="../register/register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Sri Lanka</p>
+                <p><a href="mailto:contact@blooddonation.lk">contact@blooddonation.lk</a></p>
+            </div>
+            <div class="footer-section">
+                <h5>Newsletter</h5>
+                <p>Subscribe to our newsletter for updates</p>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your email">
+                    <button class="btn btn-danger" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 All Rights Reserved by Blood Finder</p>
+        </div>
+    </footer>
+
+    <!-- AOS init -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

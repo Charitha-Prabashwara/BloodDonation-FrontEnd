@@ -6,6 +6,12 @@ import NotFound from '../pages/404';
 import ApiTest from '../pages/ApiTest';
 
 import Login from '../pages/Auth/Login';
+import Register from '../pages/Auth/Register';
+import AccountCreated from '../pages/Auth/AccountCreated';
+import Verify from '../pages/Auth/Verify';
+import ForgotPassword from '../pages/Auth/ForgotPassword';
+import PasswordResetReady from '../pages/Auth/PasswordResetReady';
+import PasswordRest from '../pages/Auth/PasswordReset';
 
 function GuestRouter() {
   return (
@@ -15,17 +21,21 @@ function GuestRouter() {
 
           <Route path="/statistics" element={<NotFound />}/> 
           <Route path="/blog" element={<Blog />}/> 
-          <Route path="/about-us" element={<AboutUs />}/>
+          <Route path="/aboutus" element={<AboutUs />}/>
 
           <Route path="/login" element={<Login />}/> 
-          {/* <Route path="/register" element={<NotFound />}/> 
-          <Route path="/forgot-password" element={<NotFound />}/> */}
+          <Route path="/register" element={<Register />}/> 
+          <Route path="/account-created" element={<AccountCreated/>}/>
+          <Route path="/verify" element={<Verify/>}/>
+          <Route path="/forgot-password" element={<ForgotPassword />}/>
+          <Route path="/forgot-password-ready" element={<PasswordResetReady />}/>
+          <Route path="/password-reset" element={<PasswordRest />}/>
 
           {/* Backend api is working! TEST ROUTE */}
           <Route path="/test" element={<ApiTest />}/>  
 
       </Routes>
-    
+
   )
 }
 export default GuestRouter;
