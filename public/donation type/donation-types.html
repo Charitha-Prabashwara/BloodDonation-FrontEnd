@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Link - Donate Blood, Save Lives</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom style -->
+    <link rel="stylesheet" href="../home/css/bloodlink.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e53e3e;
+            --primary-dark: #c53030;
+            --secondary: #2d3748;
+            --light: #f7fafc;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #2d3748;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(229,62,62,0.1) 0%, rgba(247,250,252,1) 100%);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .impact-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-thumbnail:hover .play-icon {
+            transform: scale(1.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .logo-text {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- navbar -->
+    <div x-data="{ open: false }" class="w-full text-gray-700 bg-white">
+        <div class="flex flex-col max-w-screen-xl px-8 mx-auto md:items-center md:justify-between md:flex-row">
+            <div class="flex flex-row items-center justify-between py-6">
+                <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                        <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <header class="header-full-width">
+                <div class="header-container">
+                    <h1 class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
+                        BLOOD<span class="text-gray-800">LINK</span>
+                    </h1>
+                    
+                    <button class="mobile-menu-btn" @click="open = !open">☰</button>
+                    
+                    <nav class="nav-menu" :class="{'active': open}">
+                        <ul>
+                            <li><a href="../home/index.html">Home</a></li>
+                            <li><a href="../donation type/donation-types.html">Types of Donation</a></li>
+                            <li><a href="../aboutus/aboutus.html" class="active">About Us</a></li>
+                            <li><a href="../blog/blog.html">Blog</a></li>
+                            <li><a href="../login/login.html" id="user-link">Login</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-16 md:py-24">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+                        Discover How You Can <span class="text-red-600">Save Lives</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Learn about the different types of blood donation and find out which one is right for you. Your donation can make a life-saving difference.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#donation-types" class="btn-primary text-white px-6 py-3 rounded-full text-center">
+                            <i class="fas fa-tint mr-2"></i> Explore Donation Types
+                        </a>
+                        <a href="../findDonar/finddonar.html" class="btn-outline-primary px-6 py-3 rounded-full text-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i> Find a Center
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2" data-aos="fade-left">
+                    <img src="img/hero.webp" 
+                         alt="Blood donation" 
+                         class="rounded-lg shadow-xl w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="bg-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="impact-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <div class="text-red-600 text-4xl mb-4">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">1 Donation</h3>
+                    <p class="text-gray-600">Can save up to 3 lives when separated into components</p>
+                </div>
+                <div class="impact-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-red-600 text-4xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Every 2 Seconds</h3>
+                    <p class="text-gray-600">Someone in the world needs blood</p>
+                </div>
+                <div class="impact-card bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-red-600 text-4xl mb-4">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Only 56 Days</h3>
+                    <p class="text-gray-600">Between whole blood donations for most donors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Types Section -->
+    <section id="donation-types" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Types of <span class="text-red-600">Blood Donation</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover the different ways you can donate blood and help save lives. Each type serves unique medical needs.
+                </p>
+            </div>
+            
+            <!-- Tab Navigation -->
+            <div class="flex flex-wrap justify-center mb-12 border-b border-gray-200">
+                <button onclick="showTab('whole-blood')" class="tab-button active px-6 py-3 font-medium text-gray-600 hover:text-red-600 transition flex items-center">
+                    <i class="fas fa-tint mr-2"></i> Whole Blood
+                </button>
+                <button onclick="showTab('plasma')" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-600 transition flex items-center">
+                    <i class="fas fa-flask mr-2"></i> Plasma
+                </button>
+                <button onclick="showTab('platelets')" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-600 transition flex items-center">
+                    <i class="fas fa-microscope mr-2"></i> Platelets
+                </button>
+                <button onclick="showTab('double-red')" class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-red-600 transition flex items-center">
+                    <i class="fas fa-vial mr-2"></i> Double Red
+                </button>
+            </div>
+            
+            <!-- Tab Content -->
+            <div id="whole-blood" class="tab-content active">
+                <div class="flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="lg:w-1/2" data-aos="fade-right">
+                        <div class="relative video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Whole Blood Donation" 
+                                 class="rounded-xl shadow-lg w-full">
+                            <button onclick="playVideo('whole-blood-video')" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-xl opacity-0 hover:opacity-100 transition duration-300">
+                                <div class="play-icon bg-red-600 text-white rounded-full p-4 transition-transform">
+                                    <i class="fas fa-play text-2xl"></i>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="mt-4 flex justify-center space-x-4">
+                            <button onclick="showInfoModal('whole-blood-process')" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-info-circle mr-1"></i> Process Details
+                            </button>
+                            <button onclick="showInfoModal('whole-blood-benefits')" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-heart mr-1"></i> Health Benefits
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2" data-aos="fade-left">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Whole Blood Donation</h2>
+                        <p class="text-gray-600 mb-6">
+                            The most common and simplest type of blood donation. During a whole blood donation, approximately one pint (about 470ml) of blood is collected. The donation itself takes about 8-10 minutes, while the entire process (including registration, health screening, and recovery) takes about an hour.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-medal text-red-600 mr-2"></i> Used For:
+                            </h3>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Trauma patients and accident victims</li>
+                                <li>Surgery patients (both planned and emergency procedures)</li>
+                                <li>Patients with anemia and blood disorders</li>
+                                <li>Cancer patients undergoing treatment</li>
+                                <li>Patients with blood loss during childbirth</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-red-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-clipboard-check text-red-600 mr-2"></i> Requirements:
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Donors must weigh at least 50kg (110 lbs)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must be at least 18 years old (16-17 with parental consent in some regions)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must wait 56 days between donations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must be in good general health and feeling well</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plasma Tab Content -->
+            <div id="plasma" class="tab-content">
+                <div class="flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="lg:w-1/2" data-aos="fade-right">
+                        <div class="relative video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Plasma Donation" 
+                                 class="rounded-xl shadow-lg w-full">
+                            <button onclick="playVideo('plasma-video')" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-xl opacity-0 hover:opacity-100 transition duration-300">
+                                <div class="play-icon bg-red-600 text-white rounded-full p-4 transition-transform">
+                                    <i class="fas fa-play text-2xl"></i>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="mt-4 flex justify-center space-x-4">
+                            <button onclick="showInfoModal('plasma-process')" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-info-circle mr-1"></i> Process Details
+                            </button>
+                            <button onclick="showInfoModal('plasma-benefits')" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-heart mr-1"></i> Health Benefits
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2" data-aos="fade-left">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Plasma Donation</h2>
+                        <p class="text-gray-600 mb-6">
+                            Plasma donation (plasmapheresis) collects the liquid portion of your blood (plasma). During the donation, blood is drawn from one arm and passed through a high-tech machine that separates the plasma, then returns your red cells and platelets to you along with some saline. The process takes about 1.5 hours.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-medal text-red-600 mr-2"></i> Used For:
+                            </h3>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Burn victims and trauma patients</li>
+                                <li>Patients with severe bleeding disorders</li>
+                                <li>People with immune deficiencies</li>
+                                <li>Research and pharmaceutical uses</li>
+                                <li>Patients undergoing organ transplants</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-red-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-clipboard-check text-red-600 mr-2"></i> Requirements:
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Donors must weigh at least 50kg (110 lbs)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must be at least 18 years old</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Can donate every 28 days, up to 13 times per year</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must have adequate vein size for the apheresis machine</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>AB blood type is especially valuable for plasma donation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platelets Tab Content -->
+            <div id="platelets" class="tab-content">
+                <div class="flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="lg:w-1/2" data-aos="fade-right">
+                        <div class="relative video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Platelets Donation" 
+                                 class="rounded-xl shadow-lg w-full">
+                            <button onclick="playVideo('platelets-video')" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-xl opacity-0 hover:opacity-100 transition duration-300">
+                                <div class="play-icon bg-red-600 text-white rounded-full p-4 transition-transform">
+                                    <i class="fas fa-play text-2xl"></i>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="mt-4 flex justify-center space-x-4">
+                            <button onclick="showInfoModal('platelets-process')" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-info-circle mr-1"></i> Process Details
+                            </button>
+                            <button onclick="showInfoModal('platelets-benefits')" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-heart mr-1"></i> Health Benefits
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2" data-aos="fade-left">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Platelets Donation</h2>
+                        <p class="text-gray-600 mb-6">
+                            Platelet donation (plateletpheresis) collects just your platelets. Like plasma donation, blood is drawn from one arm and passed through a machine that separates the platelets, then returns your red cells and most of the plasma back to you. The process takes about 2-2.5 hours.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-medal text-red-600 mr-2"></i> Used For:
+                            </h3>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Cancer patients undergoing chemotherapy</li>
+                                <li>Patients with leukemia or aplastic anemia</li>
+                                <li>Organ transplant recipients</li>
+                                <li>Patients undergoing major surgery</li>
+                                <li>Patients with platelet function disorders</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-red-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-clipboard-check text-red-600 mr-2"></i> Requirements:
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Donors must weigh at least 50kg (110 lbs)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must be at least 18 years old</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Can donate every 7 days, up to 24 times per year</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must avoid aspirin for 48 hours before donation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>A, B, and AB blood types are especially valuable for platelet donation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Double Red Cells Tab Content -->
+            <div id="double-red" class="tab-content">
+                <div class="flex flex-col lg:flex-row gap-12 items-center">
+                    <div class="lg:w-1/2" data-aos="fade-right">
+                        <div class="relative video-thumbnail">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Double Red Cells Donation" 
+                                 class="rounded-xl shadow-lg w-full">
+                            <button onclick="playVideo('double-red-video')" class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded-xl opacity-0 hover:opacity-100 transition duration-300">
+                                <div class="play-icon bg-red-600 text-white rounded-full p-4 transition-transform">
+                                    <i class="fas fa-play text-2xl"></i>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="mt-4 flex justify-center space-x-4">
+                            <button onclick="showInfoModal('double-red-process')" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-info-circle mr-1"></i> Process Details
+                            </button>
+                            <button onclick="showInfoModal('double-red-benefits')" class="text-red-600 hover:text-red-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-heart mr-1"></i> Health Benefits
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2" data-aos="fade-left">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">Double Red Cells Donation</h2>
+                        <p class="text-gray-600 mb-6">
+                            Double red cell donation (erythrocytapheresis) allows you to safely donate two units of red blood cells in one appointment. This automated process collects your red blood cells and returns most of the plasma and platelets to you. The donation takes about 1.5 hours.
+                        </p>
+                        
+                        <div class="mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-medal text-red-600 mr-2"></i> Used For:
+                            </h3>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>Trauma patients and accident victims</li>
+                                <li>Surgery patients with significant blood loss</li>
+                                <li>Patients with chronic anemia</li>
+                                <li>Patients with sickle cell disease</li>
+                                <li>Newborns who need blood transfusions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-red-50 p-6 rounded-lg">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-clipboard-check text-red-600 mr-2"></i> Requirements:
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Male donors must be at least 5'1" and weigh at least 59kg (130 lbs)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Female donors must be at least 5'5" and weigh at least 68kg (150 lbs)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must be at least 18 years old</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>Must wait 112 days between donations</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check text-red-600 mr-2 mt-0.5"></i>
+                                    <span>O, A-, and B- blood types are especially valuable for double red donation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Donation Type <span class="text-red-600">Comparison</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    See how the different donation types compare to find the best option for you.
+                </p>
+            </div>
+            
+            <div class="overflow-x-auto" data-aos="fade-up">
+                <table class="min-w-full bg-white rounded-lg overflow-hidden shadow-md">
+                    <thead class="bg-red-600 text-white">
+                        <tr>
+                            <th class="py-4 px-6 text-left">Type</th>
+                            <th class="py-4 px-6 text-left">Duration</th>
+                            <th class="py-4 px-6 text-left">Frequency</th>
+                            <th class="py-4 px-6 text-left">Best For</th>
+                            <th class="py-4 px-6 text-left">Blood Type</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-red-50 transition cursor-pointer" onclick="showTab('whole-blood')">
+                            <td class="py-4 px-6 font-medium">Whole Blood</td>
+                            <td class="py-4 px-6">1 hour</td>
+                            <td class="py-4 px-6">Every 56 days</td>
+                            <td class="py-4 px-6">General use, trauma, surgery</td>
+                            <td class="py-4 px-6">All types</td>
+                        </tr>
+                        <tr class="hover:bg-red-50 transition cursor-pointer" onclick="showTab('plasma')">
+                            <td class="py-4 px-6 font-medium">Plasma</td>
+                            <td class="py-4 px-6">1.5 hours</td>
+                            <td class="py-4 px-6">Every 28 days</td>
+                            <td class="py-4 px-6">Burn victims, immune disorders</td>
+                            <td class="py-4 px-6">AB preferred</td>
+                        </tr>
+                        <tr class="hover:bg-red-50 transition cursor-pointer" onclick="showTab('platelets')">
+                            <td class="py-4 px-6 font-medium">Platelets</td>
+                            <td class="py-4 px-6">2-2.5 hours</td>
+                            <td class="py-4 px-6">Every 7 days (max 24/year)</td>
+                            <td class="py-4 px-6">Cancer patients, surgery</td>
+                            <td class="py-4 px-6">A, B, AB</td>
+                        </tr>
+                        <tr class="hover:bg-red-50 transition cursor-pointer" onclick="showTab('double-red')">
+                            <td class="py-4 px-6 font-medium">Double Red Cells</td>
+                            <td class="py-4 px-6">1.5 hours</td>
+                            <td class="py-4 px-6">Every 112 days</td>
+                            <td class="py-4 px-6">Trauma, surgery, anemia</td>
+                            <td class="py-4 px-6">O, A-, B-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mt-6 text-right">
+                <button onclick="downloadComparisonChart()" class="text-red-600 hover:text-red-800 font-medium flex items-center justify-end">
+                    <i class="fas fa-download mr-2"></i> Download Comparison Chart
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Which Donation Type is <span class="text-red-600">Right For You?</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Take our quick quiz to find out which donation method best matches your blood type, schedule, and health profile.
+                </p>
+            </div>
+            
+            <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
+                <div class="p-8">
+                    <!-- Quiz Progress Indicator -->
+                    <div class="flex justify-between mb-6">
+                        <div class="w-1/4 text-center">
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div id="progress-1" class="h-2 bg-red-600 rounded-full"></div>
+                            </div>
+                            <span class="text-sm mt-1">Question 1</span>
+                        </div>
+                        <div class="w-1/4 text-center">
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div id="progress-2" class="h-2 bg-gray-200 rounded-full"></div>
+                            </div>
+                            <span class="text-sm mt-1">Question 2</span>
+                        </div>
+                        <div class="w-1/4 text-center">
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div id="progress-3" class="h-2 bg-gray-200 rounded-full"></div>
+                            </div>
+                            <span class="text-sm mt-1">Question 3</span>
+                        </div>
+                        <div class="w-1/4 text-center">
+                            <div class="h-2 bg-gray-200 rounded-full">
+                                <div id="progress-4" class="h-2 bg-gray-200 rounded-full"></div>
+                            </div>
+                            <span class="text-sm mt-1">Question 4</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Quiz Questions Container -->
+                    <div id="quiz-container">
+                        <!-- Question 1 -->
+                        <div id="quiz-question-1" class="quiz-question">
+                            <h3 class="text-xl font-semibold mb-6">1. What is your blood type?</h3>
+                            <div class="space-y-4">
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="blood-type" class="form-radio h-5 w-5 text-red-600" value="O+">
+                                    <span class="text-gray-700">O+</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="blood-type" class="form-radio h-5 w-5 text-red-600" value="O-">
+                                    <span class="text-gray-700">O-</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="blood-type" class="form-radio h-5 w-5 text-red-600" value="A+">
+                                    <span class="text-gray-700">A+</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="blood-type" class="form-radio h-5 w-5 text-red-600" value="A-">
+                                    <span class="text-gray-700">A-</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="blood-type" class="form-radio h-5 w-5 text-red-600" value="B+">
+                                    <span class="text-gray-700">B+</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="blood-type" class="form-radio h-5 w-5 text-red-600" value="B-">
+                                    <span class="text-gray-700">B-</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="blood-type" class="form-radio h-5 w-5 text-red-600" value="AB+">
+                                    <span class="text-gray-700">AB+</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="blood-type" class="form-radio h-5 w-5 text-red-600" value="AB-">
+                                    <span class="text-gray-700">AB-</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div id="quiz-question-2" class="quiz-question hidden">
+                            <h3 class="text-xl font-semibold mb-6">2. How often can you donate?</h3>
+                            <div class="space-y-4">
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="frequency" class="form-radio h-5 w-5 text-red-600" value="occasional">
+                                    <span class="text-gray-700">Occasionally (a few times a year)</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="frequency" class="form-radio h-5 w-5 text-red-600" value="monthly">
+                                    <span class="text-gray-700">Monthly</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="frequency" class="form-radio h-5 w-5 text-red-600" value="frequent">
+                                    <span class="text-gray-700">Frequently (every few weeks)</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="frequency" class="form-radio h-5 w-5 text-red-600" value="flexible">
+                                    <span class="text-gray-700">I'm flexible - whatever helps most</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 3 -->
+                        <div id="quiz-question-3" class="quiz-question hidden">
+                            <h3 class="text-xl font-semibold mb-6">3. How much time can you commit per donation?</h3>
+                            <div class="space-y-4">
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="time" class="form-radio h-5 w-5 text-red-600" value="short">
+                                    <span class="text-gray-700">1 hour or less</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="time" class="form-radio h-5 w-5 text-red-600" value="medium">
+                                    <span class="text-gray-700">1-2 hours</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="time" class="form-radio h-5 w-5 text-red-600" value="long">
+                                    <span class="text-gray-700">2+ hours</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 4 -->
+                        <div id="quiz-question-4" class="quiz-question hidden">
+                            <h3 class="text-xl font-semibold mb-6">4. Do you have any health conditions that might affect donation?</h3>
+                            <div class="space-y-4">
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="health" class="form-radio h-5 w-5 text-red-600" value="none">
+                                    <span class="text-gray-700">No, I'm generally healthy</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="health" class="form-radio h-5 w-5 text-red-600" value="minor">
+                                    <span class="text-gray-700">Minor conditions (controlled high BP, etc.)</span>
+                                </label>
+                                <label class="flex items-center space-x-4 p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer transition">
+                                    <input type="radio" name="health" class="form-radio h-5 w-5 text-red-600" value="consult">
+                                    <span class="text-gray-700">I'd need to consult with a doctor first</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation Buttons -->
+                        <div class="mt-8 flex justify-between">
+                            <button id="prev-btn" class="px-6 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-100 opacity-50 cursor-not-allowed transition hidden">
+                                <i class="fas fa-arrow-left mr-2"></i> Previous
+                            </button>
+                            <button id="next-btn" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition ml-auto">
+                                Next <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div id="quiz-result" class="hidden text-center py-8">
+                        <div class="mb-6">
+                            <i class="fas fa-heart text-red-600 text-5xl mb-4"></i>
+                            <h3 class="text-2xl font-bold text-red-600 mb-2">Your Recommended Donation Type:</h3>
+                            <div id="result-content" class="mb-6"></div>
+                        </div>
+                        <button id="restart-btn" class="px-6 py-2 border border-red-600 text-red-600 rounded-lg hover:bg-red-50 transition">
+                            <i class="fas fa-redo mr-2"></i> Take Quiz Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Frequently Asked <span class="text-red-600">Questions</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Find answers to common questions about blood donation and eligibility.
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto" data-aos="fade-up">
+                <div class="space-y-4">
+                    <!-- FAQ Item 1 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button onclick="toggleFAQ(1)" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center transition">
+                            <span class="font-medium text-gray-800">How often can I donate blood?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-1"></i>
+                        </button>
+                        <div id="faq-content-1" class="hidden px-6 py-4 bg-white">
+                            <p class="text-gray-600">The frequency depends on the type of donation:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                <li>Whole Blood: Every 56 days (about every 2 months)</li>
+                                <li>Plasma: Every 28 days (about once a month)</li>
+                                <li>Platelets: Every 7 days, up to 24 times per year</li>
+                                <li>Double Red Cells: Every 112 days (about every 4 months)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 2 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button onclick="toggleFAQ(2)" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center transition">
+                            <span class="font-medium text-gray-800">What should I do before donating blood?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-2"></i>
+                        </button>
+                        <div id="faq-content-2" class="hidden px-6 py-4 bg-white">
+                            <p class="text-gray-600">To prepare for your donation:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                <li>Get a good night's sleep before donating</li>
+                                <li>Eat a healthy meal rich in iron (like red meat, fish, or spinach)</li>
+                                <li>Drink plenty of fluids (water or juice) before and after donation</li>
+                                <li>Avoid fatty foods before donating (they can affect tests)</li>
+                                <li>Bring your ID and list of any medications you're taking</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 3 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button onclick="toggleFAQ(3)" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center transition">
+                            <span class="font-medium text-gray-800">How long does the donation process take?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-3"></i>
+                        </button>
+                        <div id="faq-content-3" class="hidden px-6 py-4 bg-white">
+                            <p class="text-gray-600">The time varies by donation type:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                <li>Whole Blood: About 1 hour total (10-15 minutes for actual donation)</li>
+                                <li>Plasma: About 1.5 hours total (45-60 minutes for actual donation)</li>
+                                <li>Platelets: About 2-2.5 hours total (90-120 minutes for actual donation)</li>
+                                <li>Double Red Cells: About 1.5 hours total (45-60 minutes for actual donation)</li>
+                            </ul>
+                            <p class="mt-2 text-gray-600">This includes registration, health screening, donation, and recovery time.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Item 4 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button onclick="toggleFAQ(4)" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center transition">
+                            <span class="font-medium text-gray-800">Are there any side effects after donating?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-4"></i>
+                        </button>
+                        <div id="faq-content-4" class="hidden px-6 py-4 bg-white">
+                            <p class="text-gray-600">Most people feel fine after donating, but some temporary side effects may include:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                <li>Minor bruising at the needle site</li>
+                                <li>Feeling lightheaded or dizzy</li>
+                                <li>Fatigue</li>
+                                <li>Nausea</li>
+                            </ul>
+                            <p class="mt-2 text-gray-600">These effects usually resolve quickly. To minimize side effects:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                                <li>Drink extra fluids for 24 hours after donating</li>
+                                <li>Avoid strenuous activity for 5-6 hours</li>
+                                <li>Eat iron-rich foods to replenish your iron stores</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <!-- FAQ Item 8 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button onclick="toggleFAQ(8)" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center transition">
+                        <span class="font-medium text-gray-800">What should I eat before and after donating blood?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-8"></i>
+                    </button>
+                    <div id="faq-content-8" class="hidden px-6 py-4 bg-white">
+                        <p class="text-gray-600">Proper nutrition helps ensure a successful donation and quick recovery:</p>
+                        <h4 class="font-semibold text-gray-800 mt-4">Before Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Iron-rich foods (red meat, spinach, beans, iron-fortified cereals)</li>
+                            <li>Vitamin C-rich foods (oranges, tomatoes) to help iron absorption</li>
+                            <li>Plenty of water (at least 16 oz extra before donation)</li>
+                            <li>Avoid fatty foods which can affect blood tests</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">After Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Continue drinking extra fluids for 24-48 hours</li>
+                            <li>Eat iron-rich meals for the next few weeks</li>
+                            <li>Include protein sources to help replenish plasma proteins</li>
+                            <li>Avoid alcohol for 24 hours as it can lead to dehydration</li>
+                        </ul>
+                    </div>
+                </div>
+                <br>
+                <!-- FAQ Item 9 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button onclick="toggleFAQ(9)" class="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 focus:outline-none flex justify-between items-center transition">
+                        <span class="font-medium text-gray-800">Can I exercise after donating blood?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-9"></i>
+                    </button>
+                    <div id="faq-content-9" class="hidden px-6 py-4 bg-white">
+                        <p class="text-gray-600">Exercise after blood donation requires some precautions:</p>
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li><strong>First 24 hours:</strong> Avoid strenuous exercise or heavy lifting</li>
+                            <li><strong>First 5 hours:</strong> No vigorous activity at all</li>
+                            <li><strong>Light activities:</strong> Walking and gentle stretching are fine</li>
+                            <li><strong>Hydration:</strong> Drink extra fluids if doing any exercise</li>
+                            <li><strong>Listen to your body:</strong> Stop if you feel lightheaded or fatigued</li>
+                        </ul>
+                        <p class="mt-2 text-gray-600">For platelet or plasma donations, you may resume normal activities after resting, but still avoid intense workouts for 24 hours. Athletes should wait 2-3 days before competitive training or events.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <a href="../faq/faq.html" class="text-red-600 hover:text-red-800 font-medium flex items-center justify-center mx-auto">
+                        <i class="fas fa-plus-circle mr-2"></i> View All FAQs
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Calculator -->
+    <section class="py-16 bg-red-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    Your Donation <span class="text-red-600">Impact Calculator</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    See how many lives you could save based on your donation frequency.
+                </p>
+            </div>
+            
+            <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up">
+                <div class="p-8">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">Donation Type:</label>
+                        <select id="calc-donation-type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <option value="whole-blood">Whole Blood</option>
+                            <option value="plasma">Plasma</option>
+                            <option value="platelets">Platelets</option>
+                            <option value="double-red">Double Red Cells</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-medium mb-2">How often do you plan to donate?</label>
+                        <select id="calc-frequency" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <option value="1">Once</option>
+                            <option value="2">Twice a year</option>
+                            <option value="4">4 times a year</option>
+                            <option value="6">6 times a year</option>
+                            <option value="12">Monthly</option>
+                            <option value="24">Maximum allowed</option>
+                        </select>
+                    </div>
+                    
+                    <button onclick="calculateImpact()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                        Calculate My Impact
+                    </button>
+                    
+                    <div id="impact-result" class="mt-6 hidden">
+                        <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded-r-lg">
+                            <h3 class="font-bold text-lg text-red-800 mb-2">Your Potential Impact:</h3>
+                            <p id="impact-text" class="text-gray-700 mb-3"></p>
+                            <div class="flex items-center justify-center">
+                                <i class="fas fa-heart text-red-600 text-2xl mr-2"></i>
+                                <span id="lives-saved" class="text-xl font-bold text-red-800"></span>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <a href="../findDonar/finddonar.html" class="text-red-600 hover:text-red-800 font-medium inline-flex items-center">
+                                <i class="fas fa-map-marker-alt mr-2"></i> Find a donation center near you
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-red-600 to-red-800 text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Make a Difference?</h2>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">
+                    Join thousands of donors who are saving lives every day. Your donation could be the lifeline someone desperately needs.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="../findDonar/finddonar.html" class="bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-full font-medium transition duration-300">
+                        <i class="fas fa-map-marker-alt mr-2"></i> Find a Donation Center
+                    </a>
+                    <a href="../register/register.html" class="border-2 border-white text-white hover:bg-white hover:text-red-600 px-8 py-3 rounded-full font-medium transition duration-300">
+                        <i class="fas fa-user-plus mr-2"></i> Register as Donor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h2>BLOOD LINK</h2>
+                <p>Are you in need of blood or looking to make a life-saving donation in Sri Lanka? Our Blood Donation Finder website is here to connect donors with those in need.</p>
+                <div class="availability">
+                    <p><strong>24 X 7</strong></p>
+                    <p><strong>365 Days</strong></p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Other Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../findDonar/finddonar.html">Find donor</a></li>
+                    <li><a href="../aboutus/aboutus.html">About us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                    <li><a href="../register/register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Sri Lanka</p>
+                <p><a href="mailto:contact@blooddonation.lk">contact@blooddonation.lk</a></p>
+            </div>
+            <div class="footer-section">
+                <h5>Newsletter</h5>
+                <p>Subscribe to our newsletter for updates</p>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your email">
+                    <button class="btn btn-danger" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 All Rights Reserved by Blood Finder</p>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl">
+            <button onclick="closeVideoModal()" class="absolute -top-10 right-0 text-white hover:text-red-300 text-3xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="aspect-w-16 aspect-h-9">
+                <iframe id="video-iframe" class="w-full h-96" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div id="info-modal" class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="relative bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <button onclick="closeInfoModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-600 text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="p-8">
+                <h3 id="info-modal-title" class="text-2xl font-bold text-gray-800 mb-4"></h3>
+                <div id="info-modal-content" class="text-gray-600"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Activate clicked button
+            event.currentTarget.classList.add('active');
+            
+            // Update URL hash
+            window.location.hash = tabId;
+            
+            // Scroll to top of tab content
+            document.getElementById(tabId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Check URL hash on load
+        window.addEventListener('load', function() {
+            if (window.location.hash) {
+                const tabId = window.location.hash.substring(1);
+                if (['whole-blood', 'plasma', 'platelets', 'double-red'].includes(tabId)) {
+                    const button = document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`);
+                    if (button) button.click();
+                }
+            }
+        });
+        
+        // Video modal functions
+        function playVideo(videoId) {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            
+            // Set video URL based on videoId
+            let videoUrl = '';
+            switch(videoId) {
+                case 'whole-blood-video':
+                    videoUrl = 'https://www.youtube.com/embed/VIDEO_ID_WHOLE_BLOOD';
+                    break;
+                case 'plasma-video':
+                    videoUrl = 'https://www.youtube.com/embed/VIDEO_ID_PLASMA';
+                    break;
+                case 'platelets-video':
+                    videoUrl = 'https://www.youtube.com/embed/VIDEO_ID_PLATELETS';
+                    break;
+                case 'double-red-video':
+                    videoUrl = 'https://www.youtube.com/embed/VIDEO_ID_DOUBLE_RED';
+                    break;
+            }
+            
+            iframe.src = videoUrl;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            
+            iframe.src = '';
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Info modal functions
+        function showInfoModal(infoType) {
+            const modal = document.getElementById('info-modal');
+            const title = document.getElementById('info-modal-title');
+            const content = document.getElementById('info-modal-content');
+            
+            // Set content based on infoType
+            switch(infoType) {
+                case 'whole-blood-process':
+                    title.textContent = 'Whole Blood Donation Process';
+                    content.innerHTML = `
+                        <h4 class="font-semibold text-gray-800 mt-4">Before Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Register and provide identification</li>
+                            <li>Complete a health history questionnaire</li>
+                            <li>Have a mini-physical (temperature, blood pressure, pulse, and hemoglobin check)</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">During Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>You'll be seated comfortably</li>
+                            <li>A sterile needle is inserted into a vein in your arm</li>
+                            <li>About 1 pint of blood is collected (takes 8-10 minutes)</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">After Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>You'll rest for 10-15 minutes and have a snack</li>
+                            <li>Drink extra fluids for 24-48 hours</li>
+                            <li>Avoid strenuous activity for 5-6 hours</li>
+                        </ul>
+                    `;
+                    break;
+                case 'whole-blood-benefits':
+                    title.textContent = 'Whole Blood Donation Health Benefits';
+                    content.innerHTML = `
+                        <p class="mb-4">Donating whole blood offers several potential health benefits:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Reduces iron stores:</strong> Helps prevent iron overload which is associated with cardiovascular disease</li>
+                            <li><strong>Burns calories:</strong> Donating blood burns approximately 650 calories per donation</li>
+                            <li><strong>Free health checkup:</strong> You receive a mini-physical that checks your blood pressure, pulse, temperature, and hemoglobin levels</li>
+                            <li><strong>May lower cancer risk:</strong> Some studies suggest reducing iron stores through donation may lower cancer risk</li>
+                            <li><strong>Psychological benefits:</strong> The act of helping others can reduce stress and improve emotional well-being</li>
+                        </ul>
+                        <p class="mt-4">Note: These benefits should not be the primary reason for donating. The main purpose is to help others in need.</p>
+                    `;
+                    break;
+                case 'plasma-process':
+                    title.textContent = 'Plasma Donation Process';
+                    content.innerHTML = `
+                        <h4 class="font-semibold text-gray-800 mt-4">Before Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Complete registration and health screening</li>
+                            <li>Undergo a physical exam (including protein and hematocrit levels)</li>
+                            <li>Review medical history and medications</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">During Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Blood is drawn from one arm</li>
+                            <li>Plasma is separated by a machine</li>
+                            <li>Red blood cells and other components are returned to you with saline</li>
+                            <li>Process takes about 1.5 hours</li>
+                            <li>You can watch TV, read, or relax during the process</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">After Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Rest for 10-15 minutes and have a snack</li>
+                            <li>Drink plenty of fluids to replace lost volume</li>
+                            <li>Avoid alcohol for 8 hours</li>
+                            <li>Eat protein-rich foods to help replace plasma proteins</li>
+                        </ul>
+                    `;
+                    break;
+                case 'plasma-benefits':
+                    title.textContent = 'Plasma Donation Health Benefits';
+                    content.innerHTML = `
+                        <p class="mb-4">Donating plasma offers several potential health benefits:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Helps others:</strong> Your plasma can help treat many serious medical conditions</li>
+                            <li><strong>Free health screening:</strong> Regular checks of your protein and hematocrit levels</li>
+                            <li><strong>May lower cholesterol:</strong> Some studies suggest plasma donation may help reduce bad cholesterol</li>
+                            <li><strong>Hydration reminder:</strong> The process encourages you to stay well-hydrated</li>
+                            <li><strong>Financial compensation:</strong> Many plasma centers compensate donors for their time</li>
+                        </ul>
+                        <p class="mt-4">Note: Plasma donation is generally safe, but frequent donations may lead to lower immunoglobulin levels in some donors.</p>
+                    `;
+                    break;
+                case 'platelets-process':
+                    title.textContent = 'Platelets Donation Process';
+                    content.innerHTML = `
+                        <h4 class="font-semibold text-gray-800 mt-4">Before Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Complete registration and health screening</li>
+                            <li>Undergo a physical exam (including platelet count)</li>
+                            <li>Review medications - must avoid aspirin for 48 hours prior</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">During Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Blood is drawn from one arm</li>
+                            <li>Platelets are separated by a machine</li>
+                            <li>Other blood components are returned to you</li>
+                            <li>Process takes about 2-2.5 hours</li>
+                            <li>You can watch movies or read during the process</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">After Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Rest for 10-15 minutes and have a snack</li>
+                            <li>Drink extra fluids for the next 24 hours</li>
+                            <li>Avoid strenuous activity for the rest of the day</li>
+                        </ul>
+                    `;
+                    break;
+                case 'platelets-benefits':
+                    title.textContent = 'Platelets Donation Health Benefits';
+                    content.innerHTML = `
+                        <p class="mb-4">Donating platelets offers several potential health benefits:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Critical for cancer patients:</strong> Your platelets help patients undergoing chemotherapy</li>
+                            <li><strong>Frequent donation possible:</strong> Can donate up to 24 times per year</li>
+                            <li><strong>Health monitoring:</strong> Regular checks of your platelet count and overall health</li>
+                            <li><strong>Community impact:</strong> Platelets have a short shelf life (5 days) so constant donations are needed</li>
+                        </ul>
+                        <p class="mt-4">Note: Platelet donation requires more time but can be done more frequently than whole blood donation.</p>
+                    `;
+                    break;
+                case 'double-red-process':
+                    title.textContent = 'Double Red Cells Donation Process';
+                    content.innerHTML = `
+                        <h4 class="font-semibold text-gray-800 mt-4">Before Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Complete registration and health screening</li>
+                            <li>Undergo a physical exam with focus on hemoglobin levels</li>
+                            <li>Must meet height and weight requirements</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">During Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Blood is drawn from one arm</li>
+                            <li>Red cells are separated and plasma/platelets are returned</li>
+                            <li>Process collects two units of red cells in one donation</li>
+                            <li>Takes about 1.5 hours</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mt-4">After Donation:</h4>
+                        <ul class="list-disc pl-5 mt-2 space-y-1">
+                            <li>Rest for 15-20 minutes and have a snack</li>
+                            <li>Drink plenty of fluids for the next 24-48 hours</li>
+                            <li>Avoid strenuous activity for 24 hours</li>
+                            <li>Must wait 112 days before donating again</li>
+                        </ul>
+                    `;
+                    break;
+                case 'double-red-benefits':
+                    title.textContent = 'Double Red Cells Donation Health Benefits';
+                    content.innerHTML = `
+                        <p class="mb-4">Donating double red cells offers several potential health benefits:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Maximizes impact:</strong> Donate two units in one session</li>
+                            <li><strong>Longer intervals:</strong> Only need to donate every 4 months</li>
+                            <li><strong>Ideal for O, A-, B- donors:</strong> These blood types are most needed for red cell transfusions</li>
+                            <li><strong>Less frequent donations:</strong> Good for busy schedules</li>
+                        </ul>
+                        <p class="mt-4">Note: Double red donation has stricter height/weight requirements to ensure donor safety.</p>
+                    `;
+                    break;
+            }
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeInfoModal() {
+            const modal = document.getElementById('info-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // FAQ toggle function
+        function toggleFAQ(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('transform');
+            icon.classList.toggle('rotate-180');
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+        // Quiz state
+        let currentQuestion = 1;
+        const totalQuestions = 4;
+        const answers = {};
+        
+        // DOM elements
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        // Initialize quiz
+        showQuestion(currentQuestion);
+        
+        // Event listeners
+        nextBtn.addEventListener('click', nextQuestion);
+        prevBtn.addEventListener('click', prevQuestion);
+        restartBtn.addEventListener('click', restartQuiz);
+        
+        // Update progress indicator
+        function updateProgress() {
+            for (let i = 1; i <= totalQuestions; i++) {
+                const progressBar = document.getElementById(`progress-${i}`);
+                if (progressBar) {
+                    progressBar.classList.toggle('bg-red-600', i <= currentQuestion);
+                    progressBar.classList.toggle('bg-gray-200', i > currentQuestion);
+                }
+            }
+        }
+        
+        // Show current question
+        function showQuestion(questionNum) {
+            // Hide all questions
+            document.querySelectorAll('.quiz-question').forEach(q => {
+                q.classList.add('hidden');
+            });
+            
+            // Show current question
+            const currentQuestionElement = document.getElementById(`quiz-question-${questionNum}`);
+            if (currentQuestionElement) {
+                currentQuestionElement.classList.remove('hidden');
+            }
+            
+            // Update buttons
+            if (questionNum === 1) {
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.remove('ml-auto');
+            } else {
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.add('ml-auto');
+            }
+            
+            if (questionNum === totalQuestions) {
+                nextBtn.innerHTML = 'See Results <i class="fas fa-poll ml-2"></i>';
+            } else {
+                nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right ml-2"></i>';
+            }
+            
+            updateProgress();
+        }
+        
+        // Go to next question
+        function nextQuestion() {
+            // Validate current question has an answer
+            const questionData = [
+                { name: 'blood-type', key: 'bloodType', message: 'Please select your blood type' },
+                { name: 'frequency', key: 'frequency', message: 'Please select how often you can donate' },
+                { name: 'time', key: 'time', message: 'Please select how much time you can spend' },
+                { name: 'health', key: 'health', message: 'Please select your health condition status' }
+            ];
+            
+            const currentData = questionData[currentQuestion - 1];
+            const answer = document.querySelector(`input[name="${currentData.name}"]:checked`);
+            
+            if (!answer) {
+                alert(currentData.message);
+                return;
+            }
+            
+            // Store answer
+            answers[currentData.key] = answer.value;
+            
+            // If last question, show results
+            if (currentQuestion === totalQuestions) {
+                showResults();
+                return;
+            }
+            
+            // Go to next question
+            currentQuestion++;
+            showQuestion(currentQuestion);
+        }
+        
+        // Go to previous question
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        }
+        
+        // Show quiz results
+        function showResults() {
+            // Determine recommendation based on answers
+            let recommendation = '';
+            let explanation = '';
+            
+            const bloodType = answers.bloodType;
+            const isNegative = bloodType.includes('-');
+            
+            if (bloodType.startsWith('AB')) {
+                recommendation = 'plasma';
+                explanation = 'As an AB blood type donor, your plasma is universal and can be given to patients of any blood type. Plasma from AB donors is always in high demand for trauma patients and those with immune disorders.';
+            } else if (bloodType.startsWith('O') && isNegative) {
+                recommendation = 'whole-blood';
+                explanation = 'As an O- donor (the universal donor), your whole blood is most needed for emergency situations when there\'s no time to check a patient\'s blood type.';
+            } else if (bloodType.startsWith('O') && answers.time === 'short') {
+                recommendation = 'whole-blood';
+                explanation = 'As an O+ donor, your whole blood is most needed for emergency situations. The quick donation process fits your time availability.';
+            } else if (bloodType.startsWith('O') && (answers.frequency === 'monthly' || answers.frequency === 'flexible')) {
+                recommendation = 'double-red';
+                explanation = 'As an O blood type donor, your red blood cells are in constant demand. Double red donation allows you to give twice the amount of red cells in one visit, with a longer wait between donations.';
+            } else if ((bloodType.startsWith('A') || bloodType.startsWith('B')) && answers.time !== 'short' && answers.frequency !== 'occasional') {
+                recommendation = 'platelets';
+                explanation = 'Platelets from A and B blood type donors are especially valuable for cancer patients. While it takes more time, you can donate more frequently (up to 24 times per year).';
+            } else {
+                recommendation = 'whole-blood';
+                explanation = 'Whole blood donation is the most flexible option that helps the widest range of patients. It fits most donors\' schedules and time availability.';
+            }
+            
+            // Adjust for health conditions
+            if (answers.health === 'consult') {
+                explanation += ' Please consult with your doctor or our medical staff before donating to ensure your safety.';
+            } else if (answers.health === 'minor') {
+                explanation += ' Some minor health conditions may require additional screening before donation.';
+            }
+            
+            // Get the display name for the recommendation
+            const displayNames = {
+                'whole-blood': 'Whole Blood Donation',
+                'plasma': 'Plasma Donation',
+                'platelets': 'Platelets Donation',
+                'double-red': 'Double Red Cells Donation'
+            };
+            
+            // Show results
+            document.getElementById('result-content').innerHTML = `
+                <div class="bg-white p-4 rounded-lg shadow-md mb-4">
+                    <h4 class="text-xl font-bold text-red-600 mb-2">${displayNames[recommendation]}</h4>
+                    <p class="text-gray-700">${explanation}</p>
+                </div>
+                <button onclick="showTab('${recommendation}')" class="text-red-600 hover:text-red-800 font-medium inline-flex items-center">
+                    <i class="fas fa-arrow-right mr-2"></i> Learn more about ${displayNames[recommendation].toLowerCase()}
+                </button>
+            `;
+            
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+        }
+        
+        // Restart quiz
+        function restartQuiz() {
+            currentQuestion = 1;
+            
+            // Reset all radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+            
+            // Show first question
+            showQuestion(1);
+            
+            // Hide results and show quiz
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+        }
+    });
+        
+        // Impact calculator
+        function calculateImpact() {
+            const donationType = document.getElementById('calc-donation-type').value;
+            const frequency = parseInt(document.getElementById('calc-frequency').value);
+            
+            let livesPerDonation = 1;
+            let message = '';
+            
+            switch(donationType) {
+                case 'whole-blood':
+                    livesPerDonation = 3;
+                    message = `By donating whole blood ${frequency} times per year, you could help save up to:`;
+                    break;
+                case 'plasma':
+                    livesPerDonation = 2;
+                    message = `By donating plasma ${frequency} times per year, you could help save up to:`;
+                    break;
+                case 'platelets':
+                    livesPerDonation = 1.5;
+                    message = `By donating platelets ${frequency} times per year, you could help save up to:`;
+                    break;
+                case 'double-red':
+                    livesPerDonation = 2;
+                    message = `By donating double red cells ${frequency} times per year, you could help save up to:`;
+                    break;
+            }
+            
+            const totalLives = Math.round(livesPerDonation * frequency);
+            
+            document.getElementById('impact-text').textContent = message;
+            document.getElementById('lives-saved').textContent = `${totalLives} lives per year!`;
+            document.getElementById('impact-result').classList.remove('hidden');
+        }
+        
+        // Download comparison chart
+        function downloadComparisonChart() {
+            // In a real implementation, this would generate/download a PDF or image
+            alert('Comparison chart downloaded (simulated for demo). In a complete implementation, this would download a PDF comparison chart.');
+        }
+    </script>
+</body>
+</html>

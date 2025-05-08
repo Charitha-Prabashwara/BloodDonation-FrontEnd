@@ -1,0 +1,376 @@
+/* Import base styles from bloodlink.css */
+@import url('../../../home/css/bloodlink.css');
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f9f8fa;
+}
+
+.container {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    margin-bottom: 40px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Section Styling */
+.section-title {
+    color: #d9230f;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    font-size: 2.1rem;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #d9230f;
+}
+
+.section-intro {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* Info Cards */
+.info-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    border-left: 4px solid #d9230f;
+}
+
+.info-card h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.info-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.info-list li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+}
+
+.info-list li:before {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #d9230f;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    font-size: 0.8rem;
+}
+
+/* Donor Types */
+.donor-type {
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.donor-type i {
+    font-size: 2.5rem;
+    color: #d9230f;
+    margin-bottom: 15px;
+}
+
+.donor-type h5 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.donor-type p {
+    font-size: 0.9rem;
+}
+
+/* Features Section */
+.features-section {
+    background-color: #f9f9f9;
+    padding: 40px 30px;
+    border-radius: 8px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    color: #d9230f;
+    margin-bottom: 20px;
+}
+
+.feature-item h4 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Registration Section */
+.registration-section {
+    margin-bottom: 50px;
+}
+
+.registration-section .card {
+    border: none;
+    border-radius: 10px;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .info-card {
+        padding: 20px 15px;
+    }
+}
+
+/* Button Styles */
+.btn-danger {
+    background-color: #d9230f;
+    border-color: #d9230f;
+    padding: 10px 25px;
+    font-weight: 600;
+}
+
+.btn-danger:hover {
+    background-color: #b51d0d;
+    border-color: #b51d0d;
+}
+
+/* Donation Process Section */
+.donation-process {
+    background-color: #f9f9f9;
+    padding: 50px 20px;
+    border-radius: 10px;
+}
+
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 -15px;
+}
+
+.step {
+    flex: 0 0 calc(25% - 30px);
+    margin: 0 15px;
+    position: relative;
+    text-align: center;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background-color: #d9230f;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.step:not(:last-child):after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: calc(100% - 40px);
+    height: 2px;
+    background-color: #d9230f;
+    z-index: 1;
+}
+
+.step-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.step-img:hover {
+    transform: scale(1.03);
+}
+
+.step-content h4 {
+    color: #d9230f;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.step-content p {
+    font-size: 0.95rem;
+}
+
+/* Process Tips */
+.tip-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    height: 100%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tip-card i {
+    font-size: 2rem;
+    color: #d9230f;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.tip-card h4 {
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.tip-card ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.tip-card ul li {
+    padding: 8px 0;
+    position: relative;
+    padding-left: 25px;
+}
+
+.tip-card ul li:before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #d9230f;
+    position: absolute;
+    left: 0;
+    top: 8px;
+    font-size: 0.8rem;
+}
+
+/* CTA Section Styles */
+.cta-section {
+    background: #89000b; /* Light red background */
+    padding: 40px 0;
+    text-align: center;
+    margin: 40px 0;
+    border-radius: 8px;
+}
+
+.cta-section h2 {
+    color: #1c0d0e; /* Red color */
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.cta-button {
+    background: #dc3545; /* Red background */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.cta-button i {
+    margin-right: 10px;
+}
+
+.cta-button:hover {
+    background: #c82333; /* Darker red on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.cta-note {
+    margin-top: 20px;
+    color: #ffffff; /* Gray color */
+    font-size: 1.3rem;
+}
+
+
+
+/* Responsive adjustments for process steps */
+@media (max-width: 992px) {
+    .step {
+        flex: 0 0 calc(50% - 30px);
+        margin-bottom: 30px;
+    }
+    
+    .step:nth-child(2):after {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .step {
+        flex: 0 0 100%;
+    }
+    
+    .step:after {
+        display: none !important;
+    }
+}
+

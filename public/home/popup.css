@@ -1,0 +1,135 @@
+/* Popup overlay with fade-in animation */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s;
+    font-family: 'Poppins', sans-serif;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Modern popup card */
+.popup-content {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-top: 6px solid #e63946;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.popup-content:hover {
+    transform: translateY(-5px);
+}
+
+/* Close button with hover effect */
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333333;
+    background: none;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #e63946;
+    transform: scale(1.2);
+}
+
+/* Blood drop icon */
+.blood-icon {
+    font-size: 3rem;
+    color: #e63946;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Typography */
+.blood-donation-title {
+    color: #e63946;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.blood-donation-details {
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    color: #333333;
+}
+
+.highlight-box {
+    background-color: #ffccd5;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #e63946;
+}
+
+.highlight {
+    font-weight: 600;
+    color: #e63946;
+}
+
+/* CTA Button */
+.cta-button {
+    background-color: #e63946;
+    color: #ffffff;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    display: inline-block;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+    background-color: #d00000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .popup-content {
+        padding: 1.5rem;
+        width: 85%;
+    }
+    
+    .blood-donation-title {
+        font-size: 1.5rem;
+    }
+}
