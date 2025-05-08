@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blood Link - Donate Blood, Save Lives</title>
+    <link rel="icon" type="image/png" href="..\blog\img\newlogo_webicon.png">
     <!-- Tailwind -->
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <!-- Alpine -->
@@ -20,7 +21,7 @@
     <link rel="stylesheet" href="popup.css">
 
 </head>
-<body class="antialiased">
+<body>
 
     <!-- navbar -->
     <div x-data="{ open: false }" class="w-full text-gray-700 bg-white">
@@ -35,9 +36,13 @@
             </div>
             <header class="header-full-width">
                 <div class="header-container">
-                    <h1 class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
-						BLOOD<span class="text-gray-800">LINK</span>
-					</h1>
+                    <div class="flex items-center">
+                        <!-- Logo added here -->
+                        <img src="..\blog\img\newlogo.png" alt="BloodLink Logo" class="h-11 w-11 mr-2"> <!-- Adjust size as needed -->
+                        <h1 class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
+                            Blood<span class="text-gray-800">Link</span>
+                        </h1>
+                    </div>
                     
                     <button class="mobile-menu-btn" @click="open = !open">☰</button>
                     
