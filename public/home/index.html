@@ -10,14 +10,18 @@
     <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
     <!-- AOS -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https:   //unpkg.com/aos@next/dist/aos.css" />
     <!-- Custom style -->
     <link rel="stylesheet" href="css/bloodlink.css" />
     <!-- Poppins font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <!-- Include the popup styles -->
+    <link rel="stylesheet" href="popup.css">
+
 </head>
 <body class="antialiased">
+
     <!-- navbar -->
     <div x-data="{ open: false }" class="w-full text-gray-700 bg-white">
         <div class="flex flex-col max-w-screen-xl px-8 mx-auto md:items-center md:justify-between md:flex-row">
@@ -39,10 +43,10 @@
                     
                     <nav class="nav-menu" :class="{'active': open}">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="findDonar/finddonar.html">Find Donor</a></li>
+                            <li><a href="../home/index.html">Home</a></li>
+                            <li><a href="../donation type/donation-types.html">Types of Donation</a></li>
                             <li><a href="../aboutus/aboutus.html">About Us</a></li>
-                            <li><a href="can-you-donate.html">Can You Donate</a></li>
+                            <li><a href="../blog/blog.html">Blog</a></li>
                             <li><a href="../login/login.html" id="user-link">USER</a></li>
                         </ul>
                     </nav>
@@ -52,8 +56,8 @@
     </div>
 
    <!-- Hero Section -->
-<div class="bg-red-50">
-    <div class="max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-start">
+    <div class="bg-red-50">
+        <div class="max-w-screen-xl px-8 mx-auto flex flex-col lg:flex-row items-start">
         <!--Left Col-->
         <div class="flex flex-col w-full lg:w-6/12 justify-center lg:pt-24 items-start text-center lg:text-left mb-5 md:mb-0 py-20">
             <h1 data-aos="fade-right" data-aos-once="true" class="my-4 text-5xl font-bold leading-tight text-gray-800">
@@ -76,9 +80,9 @@
         </div>
         <!--Right Col-->
         <div class="w-full lg:w-10/12 lg:-mt-2 relative" id="donation">
-            <img data-aos="fade-up" data-aos-once="true" class="w-12/12 mx-auto 2xl:-mb-2 " src="img/BD.png" alt="Blood donation process"/>
+            <img data-aos="fade-up" data-aos-once="true" class="w-12/12 mx-auto 2xl:-mb-2 mt-16" src="img/BD.png" alt="Blood donation process"/>
             <!-- blood drop -->
-            <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true" class="absolute top-10 -left-100 sm:top-100 sm:left-10 md:top-500 md:left-175 lg:-left-100 lg:top-72 floating-4">
+            <div data-aos="fade-up" data-aos-delay="300" data-aos-once="true" class="absolute top-10 -left-200 sm:top-100 sm:left-20 md:top-500 md:left-175 lg:-left-100 lg:top-72 floating-4">
                 <svg class="h-16" viewBox="0 0 94 94" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M41.9995 93.3333C19.3328 93.3333 0.666178 74.6667 0.666178 52C0.666178 29.3333 41.9995 0.666656 41.9995 0.666656C41.9995 0.666656 83.3328 29.3333 83.3328 52C83.3328 74.6667 64.6662 93.3333 41.9995 93.3333Z" fill="#D10000"/>
                 </svg>
@@ -91,7 +95,7 @@
 					</svg>
 				</div>
                 <!-- donor card -->
-                <div data-aos="fade-up" data-aos-delay="500" data-aos-once="true" class="absolute bottom-3 -left-4 sm:left-10 sm:bottom-5 lg:bottom-4 lg:-left-100 floating">
+                <div data-aos="fade-up" data-aos-delay="500" data-aos-once="true" class="absolute bottom-10 -left-4 sm:left-10 sm:bottom-5 lg:bottom-4 lg:-left-100 floating">
                     <div class="bg-white bg-opacity-90 rounded-lg p-3 shadow-lg">
                         <div class="text-xs font-bold text-red-600">DONOR CARD</div>
                         <div class="text-sm font-medium">O+ Positive</div>
@@ -118,52 +122,17 @@
     <div class="container px-4 lg:px-8 mx-auto max-w-screen-xl text-gray-700 overflow-x-hidden">
 
         <!-- Find Donor Section -->
-		 <div class="max-w-screen-xl mx-auto px-8 py-16">
-			<div class="bg-white rounded-xl shadow-xl p-8 md:p-12">
-				<h2 class="text-3xl font-bold text-center mb-8">FIND THE CLOSEST BLOOD DONOR</h2>
-				
-				<div class="max-w-2xl mx-auto">
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-						<div>
-							<label class="block text-gray-700 font-medium mb-2" for="blood-type">Blood Type:</label>
-							<select id="blood-type" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-								<option value="A+">A+</option>
-								<option value="A-">A-</option>
-								<option value="B+">B+</option>
-								<option value="B-">B-</option>
-								<option value="AB+">AB+</option>
-								<option value="AB-">AB-</option>
-								<option value="O+">O+</option>
-								<option value="O-">O-</option>
-							</select>
-						</div>
-						<div>
-							<label class="block text-gray-700 font-medium mb-2" for="city">City:</label>
-							<input type="text" id="city" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter your city">
-						</div>
-					</div>
-					
-					<div class="mb-8">
-						<label class="block text-gray-700 font-medium mb-2" for="province">Province:</label>
-						<select id="province" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-							<option value="Central">Central Province</option>
-							<option value="Eastern">Eastern Province</option>
-							<option value="North Central">North Central Province</option>
-							<option value="Northern">Northern Province</option>
-							<option value="North Western">North Western Province</option>
-							<option value="Sabaragamuwa">Sabaragamuwa Province</option>
-							<option value="Southern">Southern Province</option>
-							<option value="Uva">Uva Province</option>
-							<option value="Western">Western Province</option>
-						</select>
-					</div>
-					
-					<button class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-105">
-						FIND DONOR
-					</button>
-				</div>
-			</div>
-		</div>
+        <div class="max-w-screen-xl mx-auto px-8 py-16">
+            <div class="bg-white rounded-xl shadow-xl p-8 md:p-12 text-center">
+                <h2 class="text-3xl font-bold mb-8">NEED BLOOD URGENTLY?</h2>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                    If you need to request blood for a patient, click the button below to access our emergency blood request form.
+                </p>
+                <a href="../requestblood/requestblood.html" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                    REQUEST BLOOD NOW
+                </a>
+            </div>
+        </div>
 
         <!-- trusted by -->
         <div class="max-w-4xl mx-auto py-12">
@@ -214,31 +183,134 @@
             </div>
         </div>
 
-        <!-- How It Works Section -->
-        <div class="mt-28">
+        <!-- Types of Donation Section -->
+        <div class="mt-28 px-4" id="donation-types">
             <div data-aos="flip-down" class="text-center max-w-screen-md mx-auto">
-                <h1 class="text-3xl font-bold mb-4">How <span class="text-red-600">Blood Donation</span> Works?</h1>
-                <p class="text-gray-500">The blood donation process from the time you arrive until the time you leave takes about an hour. The donation itself is only about 8-10 minutes.</p>
+                <h1 class="text-3xl font-bold mb-4">Types of <span class="text-red-600">Blood Donation</span></h1>
+                <p class="text-gray-500">There are several ways to donate blood to help save lives. Each type helps meet different medical needs.</p>
             </div>
-            <div data-aos="fade-up" class="flex flex-col md:flex-row justify-center space-y-5 md:space-y-0 md:space-x-6 lg:space-x-10 mt-16">
-                <div class="relative md:w-5/12">
-                    <img class="rounded-2xl w-full h-64 object-cover" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Registration">
-                    <div class="absolute bg-black bg-opacity-20 bottom-0 left-0 right-0 w-full h-full rounded-2xl">
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                            <h1 class="uppercase text-white font-bold text-center text-sm lg:text-xl mb-3">STEP 1: REGISTRATION</h1>
-                            <button class="rounded-full text-white border text-xs lg:text-md px-6 py-3 w-full font-medium focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out">Learn More</button>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+                <!-- Whole Blood Donation -->
+                <div data-aos="fade-up" data-aos-delay="100" 
+                    class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 group cursor-pointer"
+                    onclick="window.location.href='donation-types.html#whole-blood'">
+                    <div class="h-48 bg-red-50 flex items-center justify-center relative overflow-hidden">
+                        <svg class="w-20 h-20 text-red-600 transition duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                        <div class="absolute inset-0 bg-red-600 bg-opacity-0 group-hover:bg-opacity-10 transition duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-red-600 transition">Whole Blood</h3>
+                        <p class="text-gray-600 mb-4">The most common type where about a pint of whole blood is donated. Used for trauma, surgery, and anemia patients.</p>
+                        <div class="flex items-center text-sm text-gray-500 group-hover:text-red-600 transition">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Takes about 1 hour
                         </div>
+                        <button class="mt-4 text-red-600 font-medium flex items-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            Learn more
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div class="relative md:w-5/12">
-                    <img class="rounded-2xl w-full h-64 object-cover" src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Donation">
-                    <div class="absolute bg-black bg-opacity-20 bottom-0 left-0 right-0 w-full h-full rounded-2xl">
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                            <h1 class="uppercase text-white font-bold text-center text-sm lg:text-xl mb-3">STEP 2: DONATION</h1>
-                            <button class="rounded-full text-white text-xs lg:text-md px-6 py-3 w-full font-medium focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out" style="background: rgba(209, 0, 0, 0.9)">Learn More</button>
+
+                <!-- Plasma Donation -->
+                <div data-aos="fade-up" data-aos-delay="200" 
+                    class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 group cursor-pointer"
+                    onclick="window.location.href='donation-types.html#plasma'">
+                    <div class="h-48 bg-red-50 flex items-center justify-center relative overflow-hidden">
+                        <svg class="w-20 h-20 text-red-600 transition duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                        </svg>
+                        <div class="absolute inset-0 bg-red-600 bg-opacity-0 group-hover:bg-opacity-10 transition duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-red-600 transition">Plasma</h3>
+                        <p class="text-gray-600 mb-4">Plasma is collected through apheresis. Used for burn victims, shock, and bleeding disorders.</p>
+                        <div class="flex items-center text-sm text-gray-500 group-hover:text-red-600 transition">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Takes about 1.5 hours
                         </div>
+                        <button class="mt-4 text-red-600 font-medium flex items-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            Learn more
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
                     </div>
                 </div>
+
+                <!-- Platelet Donation -->
+                <div data-aos="fade-up" data-aos-delay="300" 
+                    class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 group cursor-pointer"
+                    onclick="window.location.href='donation-types.html#platelets'">
+                    <div class="h-48 bg-red-50 flex items-center justify-center relative overflow-hidden">
+                        <svg class="w-20 h-20 text-red-600 transition duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                        </svg>
+                        <div class="absolute inset-0 bg-red-600 bg-opacity-0 group-hover:bg-opacity-10 transition duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-red-600 transition">Platelets</h3>
+                        <p class="text-gray-600 mb-4">Platelets are collected through apheresis. Essential for cancer patients and those undergoing major surgery.</p>
+                        <div class="flex items-center text-sm text-gray-500 group-hover:text-red-600 transition">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Takes about 2 hours
+                        </div>
+                        <button class="mt-4 text-red-600 font-medium flex items-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            Learn more
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Double Red Cell Donation -->
+                <div data-aos="fade-up" data-aos-delay="400" 
+                    class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 group cursor-pointer"
+                    onclick="window.location.href='donation-types.html#double-red'">
+                    <div class="h-48 bg-red-50 flex items-center justify-center relative overflow-hidden">
+                        <svg class="w-20 h-20 text-red-600 transition duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <div class="absolute inset-0 bg-red-600 bg-opacity-0 group-hover:bg-opacity-10 transition duration-300"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 group-hover:text-red-600 transition">Double Red Cells</h3>
+                        <p class="text-gray-600 mb-4">A Power Red donation collects concentrated red blood cells. Ideal for those with type O, O-, A-, or B- blood.</p>
+                        <div class="flex items-center text-sm text-gray-500 group-hover:text-red-600 transition">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Takes about 1.5 hours
+                        </div>
+                        <button class="mt-4 text-red-600 font-medium flex items-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            Learn more
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="../donation type/donation-types.html" class="inline-block px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-full transition duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    Learn More About Donation Types
+                    <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
             </div>
         </div>
 
@@ -311,39 +383,56 @@
                         <span>Not have donated blood in the last 12 weeks</span>
                     </li>
                 </ul>
-                <button class="mt-6 px-5 py-3 bg-red-600 text-white font-medium focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out rounded-full">Check Full Eligibility</button>
+                <button class="mt-6 px-5 py-3 bg-red-600 text-white font-medium focus:outline-none transform transition hover:scale-110 duration-300 ease-in-out rounded-full"
+                onclick="window.location.href='../eligibility/eligibility.html'">
+                Check Full Eligibility
+                </button>
             </div>
             <img data-aos="fade-left" class="md:w-7/12 rounded-lg shadow-xl" src="img/eligib.jpg" alt="Doctor checking donor">
         </div>
 
-        <!-- Donation Process -->
-        <div class="mt-20 flex flex-col-reverse md:flex-row items-center md:space-x-10">
-            <div data-aos="fade-right" class="md:w-7/12">
-                <img class="md:w-11/12 rounded-lg shadow-xl" src="https://images.unsplash.com/photo-1576091160501-bbe57469278b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Blood donation process">
+        <!-- Hospital Implementation Section -->
+        <div class="mt-20 flex flex-col md:flex-row items-center md:space-x-10">
+            <div data-aos="fade-right" class="md:w-6/12">
+                <img class="rounded-lg shadow-xl" src="img/hospital.png" alt="Hospital implementation">
             </div>
-            <div data-aos="fade-left" class="md:w-5/12 md:transform md:-translate-y-6">
-                <h1 class="font-semibold text-gray-800 text-3xl lg:pr-64">The <span class="text-red-600">Donation</span> Process</h1>
-                <p class="text-gray-500 my-5 lg:pr-24">The actual blood donation typically takes less than 10-12 minutes. The entire process, from registration to post-donation refreshments, takes about an hour.</p>
+            <div data-aos="fade-left" class="md:w-6/12">
+                <h2 class="font-semibold text-gray-800 text-2xl mb-4">Hospitals Can Contact Us for Free Implementations</h2>
+                <p class="text-gray-600 mb-6">BloodMe Application 100% Free for Any Government and Private Hospital. Feel free to send us an email at <a href="mailto:info@smartdonar.org" class="text-red-600 underline">info@bloodme.org</a>, and we will implement a specialized system for each hospital.</p>
                 <div class="space-y-4">
                     <div class="flex items-start space-x-4">
                         <div class="flex-shrink-0 bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
                         <div>
-                            <h3 class="font-medium text-gray-800">Registration</h3>
-                            <p class="text-sm text-gray-500">You'll complete donor registration with your personal information.</p>
+                            <h3 class="font-medium text-gray-800">One Click Reach</h3>
+                            <p class="text-sm text-gray-500">Instant access to blood donors when you need them</p>
                         </div>
                     </div>
                     <div class="flex items-start space-x-4">
                         <div class="flex-shrink-0 bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
                         <div>
-                            <h3 class="font-medium text-gray-800">Health History</h3>
-                            <p class="text-sm text-gray-500">A staff member will ask you confidential questions about your health history.</p>
+                            <h3 class="font-medium text-gray-800">Free Implementation</h3>
+                            <p class="text-sm text-gray-500">No cost for setup or ongoing use</p>
                         </div>
                     </div>
                     <div class="flex items-start space-x-4">
                         <div class="flex-shrink-0 bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
                         <div>
-                            <h3 class="font-medium text-gray-800">Mini-physical</h3>
-                            <p class="text-sm text-gray-500">We'll check your temperature, pulse, blood pressure and hemoglobin level.</p>
+                            <h3 class="font-medium text-gray-800">Customized Solutions</h3>
+                            <p class="text-sm text-gray-500">Tailored to your hospital's specific needs</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">4</div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">Real-Time Updates</h3>
+                            <p class="text-sm text-gray-500">Always know donor availability status</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0 bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold">5</div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">Secure and Reliable</h3>
+                            <p class="text-sm text-gray-500">Enterprise-grade security for patient data</p>
                         </div>
                     </div>
                 </div>
@@ -395,7 +484,7 @@
                 <span class="bg-red-100 text-red-600 font-semibold px-4 py-px text-sm rounded-full">EVENT</span>
                 <h1 class="text-gray-800 font-semibold my-3 text-xl">National Blood Donation Week - Join Us!</h1>
                 <p class="text-gray-500 mb-3">This week-long event aims to collect 10,000 units of blood to address the current shortage in Sri Lankan hospitals.</p>
-                <a href="" class="underline text-red-600">Read more</a>
+                <a href="../blog/blog.html" class="underline text-red-600">Read more</a>
             </div>
             <div class="lg:w-7/12 flex flex-col justify-between mt-12 space-y-5 lg:space-y-0 lg:mt-0">
                 <div class="flex space-x-5">
@@ -453,10 +542,10 @@
                 <h3>Other Links</h3>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="find-donor.html">Find donor</a></li>
-                    <li><a href="about-us.html">About us</a></li>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
+                    <li><a href="../requestblood/requestblood.html">Request Blood</a></li>
+                    <li><a href="../aboutus/aboutus.html">About us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                    <li><a href="../register/register.html">Register</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -477,11 +566,15 @@
             <p>© 2024 All Rights Reserved by Blood Finder</p>
         </div>
     </footer>
+    
+    <!-- Include the popup script -->
+    <script src="popup.js"></script>
 
     <!-- AOS init -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+
     </script>
 </body>
 </html>

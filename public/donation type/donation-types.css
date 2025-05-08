@@ -1,0 +1,107 @@
+/* Import base styles from bloodlink.css */
+@import url('../../../home/css/bloodlink.css');
+
+/* Tab Styles */
+.tab-button {
+    position: relative;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+}
+
+.tab-button.active {
+    color: #d10000;
+    font-weight: 600;
+    border-bottom-color: #d10000;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Quiz Styles */
+.quiz-question {
+    display: none;
+}
+
+.quiz-question.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Modal Styles */
+#video-modal, #info-modal {
+    transition: opacity 0.3s ease;
+}
+
+/* Table Styles */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    text-align: left;
+    font-weight: 600;
+}
+
+td, th {
+    padding: 12px 16px;
+    transition: background-color 0.2s ease;
+}
+
+/* FAQ Accordion */
+[aria-expanded="true"] .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+/* Impact Calculator */
+#impact-result {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .tab-button {
+        padding: 8px 12px;
+        font-size: 14px;
+        flex: 1 0 auto;
+        text-align: center;
+    }
+    
+    td, th {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    #quiz-container button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        color: #000;
+        background: #fff;
+    }
+    
+    table {
+        page-break-inside: avoid;
+    }
+}
