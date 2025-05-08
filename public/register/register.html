@@ -12,13 +12,28 @@
         <!-- AOS -->
         <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <!-- Custom style -->
-        <link rel="stylesheet" href="../css/bloodlink.css">
+        <link rel="stylesheet" href="../home/css/bloodlink.css">
         <link rel="stylesheet" href="register.css">
         <!-- Poppins font -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
     </head>
 <body class="bg-gray-50">
+
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="blood-drop" style="--i:1"></div>
+        <div class="blood-drop" style="--i:2"></div>
+        <div class="blood-drop" style="--i:3"></div>
+        <div class="blood-drop" style="--i:4"></div>
+        <div class="blood-drop" style="--i:5"></div>
+        <div class="blood-drop" style="--i:6"></div>
+        <div class="blood-drop" style="--i:7"></div>
+        <div class="blood-drop" style="--i:8"></div>
+        <div class="blood-drop" style="--i:9"></div>
+        <div class="blood-drop" style="--i:10"></div>
+    </div>
+
     <!-- navbar -->
     <div x-data="{ open: false }" class="w-full text-gray-700 bg-white">
         <div class="flex flex-col max-w-screen-xl px-8 mx-auto md:items-center md:justify-between md:flex-row">
@@ -41,9 +56,9 @@
                     <nav class="nav-menu" :class="{'active': open}">
                         <ul>
                             <li><a href="../home/index.html">Home</a></li>
-                            <li><a href="../home/findDonar/finddonar.html">Find Donor</a></li>
-                            <li><a href="aboutus.html" class="active">About Us</a></li>
-                            <li><a href="../home/can-you-donate.html">Can You Donate</a></li>
+                            <li><a href="../donation type/donation-types.html">Types of Donation</a></li>
+                            <li><a href="../aboutus/aboutus.html" class="active">About Us</a></li>
+                            <li><a href="../blog/blog.html">Blog</a></li>
                             <li><a href="../login/login.html" id="user-link">Login</a></li>
                         </ul>
                     </nav>
@@ -295,62 +310,59 @@
         </div>
     </main>
 
-    <!-- Footer (matches login page exactly) -->
-    <footer class="bg-gray-800 text-white pt-12 pb-6">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="footer-section">
-                    <h3 class="text-xl font-bold mb-4 text-red-400">BLOODLINK</h3>
-                    <p class="text-gray-400">Connecting blood donors with those in need across Sri Lanka.</p>
-                    <div class="flex mt-4 space-x-4">
-                        <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">24/7</span>
-                        <span class="bg-gray-700 px-3 py-1 rounded-full text-sm">365 Days</span>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="../home/index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
-                        <li><a href="../home/findDonar/finddonar.html" class="text-gray-400 hover:text-white transition">Find Donor</a></li>
-                        <li><a href="../aboutus/aboutus.html" class="text-gray-400 hover:text-white transition">About Us</a></li>
-                        <li><a href="../home/can-you-donate.html" class="text-gray-400 hover:text-white transition">Can You Donate</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4 class="text-lg font-semibold mb-4">Account</h4>
-                    <ul class="space-y-2">
-                        <li><a href="../login/login.html" class="text-gray-400 hover:text-white transition">Login</a></li>
-                        <li><a href="../register/register.html" class="text-gray-400 hover:text-white transition">Register</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Forgot Password</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
-                    <p class="text-gray-400 mb-2">Sri Lanka</p>
-                    <p class="text-gray-400 mb-4"><a href="mailto:contact@bloodlink.lk" class="hover:text-white transition">contact@bloodlink.lk</a></p>
-                    <div class="flex space-x-4 text-xl">
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                    </div>
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h2>BLOOD LINK</h2>
+                <p>Are you in need of blood or looking to make a life-saving donation in Sri Lanka? Our Blood Donation Finder website is here to connect donors with those in need.</p>
+                <div class="availability">
+                    <p><strong>24 X 7</strong></p>
+                    <p><strong>365 Days</strong></p>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400 text-sm">
-                <p>© 2024 BloodLink. All rights reserved.</p>
+            <div class="footer-section">
+                <h3>Other Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../findDonar/finddonar.html">Find donor</a></li>
+                    <li><a href="../aboutus/aboutus.html">About us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                    <li><a href="../register/register.html">Register</a></li>
+                </ul>
             </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Sri Lanka</p>
+                <p><a href="mailto:contact@blooddonation.lk">contact@blooddonation.lk</a></p>
+            </div>
+            <div class="footer-section">
+                <h5>Newsletter</h5>
+                <p>Subscribe to our newsletter for updates</p>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your email">
+                    <button class="btn btn-danger" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 All Rights Reserved by Blood Finder</p>
         </div>
     </footer>
 
     <!-- JavaScript -->
+
     <script>
         // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
         
-        mobileMenuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-
+        if (mobileMenuBtn && navMenu) {
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+        }
+    
         // Password Visibility Toggle
         function togglePassword(id) {
             const input = document.getElementById(id);
@@ -363,43 +375,46 @@
                 icon.classList.replace('fa-eye-slash', 'fa-eye');
             }
         }
-
+    
         // Password Strength Indicator
-        document.getElementById('password').addEventListener('input', function() {
-            const password = this.value;
-            const strengthBar = document.querySelector('.strength-bar');
-            const strengthText = document.querySelector('.strength-text');
-            let strength = 0;
-            
-            // Check password length
-            if (password.length > 0) strength += 20;
-            if (password.length >= 8) strength += 20;
-            
-            // Check for uppercase letters
-            if (/[A-Z]/.test(password)) strength += 20;
-            
-            // Check for numbers
-            if (/[0-9]/.test(password)) strength += 20;
-            
-            // Check for special characters
-            if (/[^A-Za-z0-9]/.test(password)) strength += 20;
-            
-            // Update strength bar
-            strengthBar.style.width = strength + '%';
-            
-            // Update color and text
-            if (strength < 40) {
-                strengthBar.style.backgroundColor = '#ef4444';
-                strengthText.textContent = 'Weak';
-            } else if (strength < 70) {
-                strengthBar.style.backgroundColor = '#f59e0b';
-                strengthText.textContent = 'Moderate';
-            } else {
-                strengthBar.style.backgroundColor = '#10b981';
-                strengthText.textContent = 'Strong';
-            }
-        });
-
+        const passwordInput = document.getElementById('password');
+        if (passwordInput) {
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const strengthBar = document.querySelector('.strength-bar');
+                const strengthText = document.querySelector('.strength-text');
+                let strength = 0;
+                
+                // Check password length
+                if (password.length > 0) strength += 20;
+                if (password.length >= 8) strength += 20;
+                
+                // Check for uppercase letters
+                if (/[A-Z]/.test(password)) strength += 20;
+                
+                // Check for numbers
+                if (/[0-9]/.test(password)) strength += 20;
+                
+                // Check for special characters
+                if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+                
+                // Update strength bar
+                strengthBar.style.width = strength + '%';
+                
+                // Update color and text
+                if (strength < 40) {
+                    strengthBar.style.backgroundColor = '#ef4444';
+                    strengthText.textContent = 'Weak';
+                } else if (strength < 70) {
+                    strengthBar.style.backgroundColor = '#f59e0b';
+                    strengthText.textContent = 'Moderate';
+                } else {
+                    strengthBar.style.backgroundColor = '#10b981';
+                    strengthText.textContent = 'Strong';
+                }
+            });
+        }
+    
         // Form Navigation
         const formSteps = document.querySelectorAll('.form-step');
         let currentStep = 0;
@@ -425,8 +440,10 @@
                 });
                 
                 if (isValid) {
-                    currentStep++;
-                    showStep(currentStep);
+                    if (currentStep < formSteps.length - 1) {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
                 } else {
                     alert('Please fill in all required fields before proceeding.');
                 }
@@ -436,8 +453,10 @@
         // Previous button functionality
         document.querySelectorAll('.prev-step').forEach(button => {
             button.addEventListener('click', function() {
-                currentStep--;
-                showStep(currentStep);
+                if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
             });
         });
         
@@ -445,14 +464,12 @@
             // Hide all steps
             formSteps.forEach(step => {
                 step.classList.add('hidden');
-                step.classList.remove('active');
-            });
+                });
             
             // Show current step
             formSteps[index].classList.remove('hidden');
-            formSteps[index].classList.add('active');
         }
-
+    
         // Toggle medical information fields
         document.querySelectorAll('.medical-toggle input[type="checkbox"]').forEach(toggle => {
             toggle.addEventListener('change', function() {
@@ -473,23 +490,38 @@
                 }
             });
         });
-
+    
         // Form Submission
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show success message
-            alert('Registration successful! Thank you for joining our life-saving community.');
-            
-            // Reset form
-            this.reset();
-            currentStep = 0;
-            showStep(currentStep);
-            
-            // Reset password strength
-            document.querySelector('.strength-bar').style.width = '0';
-            document.querySelector('.strength-text').textContent = 'Password Strength';
-        });
+        const registrationForm = document.getElementById('registrationForm');
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate terms checkbox
+                const termsCheckbox = document.getElementById('terms');
+                if (!termsCheckbox.checked) {
+                    alert('Please agree to the Terms and Conditions');
+                    termsCheckbox.focus();
+                    return;
+                }
+                
+                // Show success message
+                alert('Registration successful! Thank you for joining our life-saving community.');
+                
+                // Reset form
+                this.reset();
+                currentStep = 0;
+                showStep(currentStep);
+                
+                // Reset password strength
+                const strengthBar = document.querySelector('.strength-bar');
+                const strengthText = document.querySelector('.strength-text');
+                if (strengthBar && strengthText) {
+                    strengthBar.style.width = '0';
+                    strengthText.textContent = 'Password Strength';
+                }
+            });
+        }
     </script>
 </body>
 </html>

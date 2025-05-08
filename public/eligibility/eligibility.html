@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Blood Donation Eligibility Criteria</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS (via CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#d9230f',
+                        primaryDark: '#b51d0d',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom style -->
+    <link rel="stylesheet" href="../home/css/bloodlink.css">
+    <link rel="stylesheet" href="eligibility.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Alpine -->
+    <script type="module" src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine-ie11.min.js" defer></script>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https:   //unpkg.com/aos@next/dist/aos.css" />
+    <!-- Poppins font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+</head>
+<body>
+    <!-- navbar -->
+    <div x-data="{ open: false }" class="w-full text-gray-700 bg-white">
+        <div class="flex flex-col max-w-screen-xl px-8 mx-auto md:items-center md:justify-between md:flex-row">
+            <div class="flex flex-row items-center justify-between py-6">
+                <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                        <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                        <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <header class="header-full-width">
+                <div class="header-container">
+                    <h1 class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent font-Poppins">
+						BLOOD<span class="text-gray-800">LINK</span>
+					</h1>
+                    
+                    <button class="mobile-menu-btn" @click="open = !open">☰</button>
+                    
+                    <nav class="nav-menu" :class="{'active': open}">
+                        <ul>
+                            <li><a href="../home/index.html">Home</a></li>
+                            <li><a href="../donation type/donation-types.html">Types of Donation</a></li>
+                            <li><a href="../aboutus/aboutus.html" class="active">About Us</a></li>
+                            <li><a href="../blog/blog.html">Blog</a></li>
+                            <li><a href="../login/login.html" id="user-link">Login</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <section class="info-section">
+            <h2 class="section-title">Blood Donation Information</h2>
+            <p class="section-intro">The person must fulfill several criteria to be accepted as a blood donor. These criteria are set forth to ensure the safety of the donor as well as the quality of donated blood.</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="info-card">
+                        <h3><i class="fas fa-check-circle text-danger me-2"></i> Who Can Donate?</h3>
+                        <ul class="info-list">
+                            <li>Age above 18 years and below 60 years</li>
+                            <li>If previously donated, at least 4 months should have passed since last donation</li>
+                            <li>Hemoglobin level should be more than 12g/dL (tested before donation)</li>
+                            <li>Free from any serious disease condition or pregnancy</li>
+                            <li>Should have valid identity proof</li>
+                            <li>Free from "Risk Behaviors"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card mt-4">
+                        <h3><i class="fas fa-clock text-danger me-2"></i> Waiting Periods</h3>
+                        <ul class="info-list">
+                            <li>Minimum 56 days between whole blood donations</li>
+                            <li>7 days between platelet donations</li>
+                            <li>28 days between double red cell donations</li>
+                            <li>1 year after getting a tattoo or piercing (unless done with sterile procedure)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="info-card">
+                        <h3><i class="fas fa-times-circle text-danger me-2"></i> Why Some Can't Donate</h3>
+                        <ul class="info-list">
+                            <li><strong>Health Conditions:</strong> Certain illnesses, low iron levels, or recent surgeries</li>
+                            <li><strong>Risk Behaviors:</strong>
+                                <ul>
+                                    <li>Homosexual activity (in some regions)</li>
+                                    <li>Sex workers and their clients</li>
+                                    <li>Drug addicts</li>
+                                    <li>Having multiple sexual partners</li>
+                                </ul>
+                            </li>
+                            <li><strong>Recent Travel:</strong> To areas with malaria risk</li>
+                            <li><strong>Medications:</strong> Some prescriptions may defer donation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card mt-4">
+                <h3><i class="fas fa-clipboard-check text-danger me-2"></i> How to Prepare</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Before Donation:</h4>
+                        <ul class="info-list">
+                            <li>Get a good night's sleep</li>
+                            <li>Eat iron-rich foods in preceding days</li>
+                            <li>Drink extra fluids (especially water)</li>
+                            <li>Eat a healthy meal before donating</li>
+                            <li>Avoid fatty foods before donation</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>After Donation:</h4>
+                        <ul class="info-list">
+                            <li>Rest for 10-15 minutes</li>
+                            <li>Drink plenty of fluids</li>
+                            <li>Avoid strenuous activity for 5 hours</li>
+                            <li>Keep the bandage on for several hours</li>
+                            <li>Eat iron-rich foods to replenish</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card mt-4">
+                <h3><i class="fas fa-users text-danger me-2"></i> Types of Donors</h3>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="donor-type">
+                            <i class="fas fa-heart"></i>
+                            <h5>Voluntary</h5>
+                            <p>Donate for others without expecting benefit (safest blood)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="donor-type">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h5>Replacement</h5>
+                            <p>Donate to replace units used for friends/family</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="donor-type">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h5>Paid</h5>
+                            <p>Receive payment for donation (higher risk)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="donor-type">
+                            <i class="fas fa-user-md"></i>
+                            <h5>Directed</h5>
+                            <p>Donate specifically for a patient's requirement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="donation-process mt-5">
+            <h2 class="section-title">The Donation Process</h2>
+            <p class="mb-5">Donating blood is simple and safe. Here's what you can expect when you donate.</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Registration" class="step-img">
+                        <h4>Registration</h4>
+                        <p>You'll complete a donor registration form with your personal information and health history.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Health Screening" class="step-img">
+                        <h4>Health Screening</h4>
+                        <p>A staff member will check your temperature, pulse, blood pressure and hemoglobin level.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <img src="https://images.unsplash.com/photo-1584473457406-6240486418e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Donation" class="step-img">
+                        <h4>Donation</h4>
+                        <p>The actual blood donation takes about 8-10 minutes. You'll donate about 1 pint of blood.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Refreshment" class="step-img">
+                        <h4>Refreshment</h4>
+                        <p>After donating, you'll enjoy snacks and drinks while you rest for 10-15 minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>READY TO SAVE LIVES?</h2>
+                <button class="cta-button" onclick="window.location.href='booknow.html'">
+                    <i class="fas fa-hand-holding-medical"></i> BOOK NOW
+                </button>
+                <p class="cta-note">Or call us at <strong>1-800-DONATE</strong></p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h2>BLOOD LINK</h2>
+                <p>Are you in need of blood or looking to make a life-saving donation in Sri Lanka? Our Blood Donation Finder website is here to connect donors with those in need.</p>
+                <div class="availability">
+                    <p><strong>24 X 7</strong></p>
+                    <p><strong>365 Days</strong></p>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Other Links</h3>
+                <ul>
+                    <li><a href="../home/index.html">Home</a></li>
+                    <li><a href="../find-donor/find-donor.html">Find donor</a></li>
+                    <li><a href="../aboutus/aboutus.html">About us</a></li>
+                    <li><a href="../login/login.html">Login</a></li>
+                    <li><a href="../register/register.html">Register</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Sri Lanka</p>
+                <p><a href="mailto:contact@blooddonation.lk">contact@blooddonation.lk</a></p>
+            </div>
+            <div class="footer-section">
+                <h5>Newsletter</h5>
+                <p>Subscribe to our newsletter for updates</p>
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your email">
+                    <button class="btn btn-danger" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 All Rights Reserved by Blood Finder</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>

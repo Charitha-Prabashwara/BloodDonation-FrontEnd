@@ -48,7 +48,7 @@ body {
     height: 20px;
     background-color: rgba(230, 57, 70, 0.2);
     border-radius: 50%;
-    animation: animate 15s linear infinite;
+    animation: animate 10s linear infinite;
     bottom: -150px;
 }
 
@@ -83,6 +83,43 @@ body {
 }
 
 .blood-drop:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.blood-drop:nth-child(6) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.blood-drop:nth-child(7) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.blood-drop:nth-child(8) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 5s;
+}
+
+.blood-drop:nth-child(9) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 10s;
+}
+
+.blood-drop:nth-child(10) {
     left: 65%;
     width: 20px;
     height: 20px;
