@@ -39,3 +39,176 @@ body {
 .text-darken {
     color: #2F327D;
 }
+
+/* Import base styles from bloodlink.css */
+@import url('../../../home/css/bloodlink.css');
+
+
+:root {
+            --primary-red: #e53e3e;
+            --dark-red: #c53030;
+            --light-gray: #f7fafc;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .blog-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--primary-red);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .read-more-btn {
+            color: var(--primary-red);
+            transition: color 0.3s ease;
+        }
+        
+        .read-more-btn:hover {
+            color: var(--dark-red);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+        
+        .pagination .page-link {
+            color: var(--primary-red);
+        }
+        
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .widget-title {
+            border-left: 4px solid var(--primary-red);
+        }
+        
+        .recent-post-item:not(:last-child) {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: #f0f0f0;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            margin: 0.25rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background-color: var(--primary-red);
+            color: white;
+        }
+        
+        /* Expanded article styles */
+        .article-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .article-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .article-content {
+            background-color: white;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .article-overlay.active .article-content {
+            transform: translateY(0);
+        }
+        
+        .close-article {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .article-content img {
+            width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 0.25rem;
+        }
+        
+        .article-content h2, .article-content h3 {
+            color: var(--primary-red);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .article-meta span {
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .article-meta i {
+            margin-right: 0.5rem;
+        }
