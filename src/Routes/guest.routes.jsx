@@ -13,6 +13,7 @@ import ForgotPassword from '../pages/Auth/ForgotPassword';
 import PasswordResetReady from '../pages/Auth/PasswordResetReady';
 import PasswordRest from '../pages/Auth/PasswordReset';
 
+import Dashboard from '../pages/User/Common/Dashboard';
 function GuestRouter() {
   return (
      
@@ -20,7 +21,7 @@ function GuestRouter() {
           <Route index element={<Home />}/> 
 
           <Route path="/statistics" element={<NotFound />}/> 
-          <Route path="/blog" element={<Blog />}/> 
+          <Route path="/blog" element={<Dashboard />}/> 
           <Route path="/aboutus" element={<AboutUs />}/>
 
           <Route path="/login" element={<Login />}/> 
