@@ -2,7 +2,7 @@ import {Route, Routes } from 'react-router-dom';
 import  Home from '../pages/Home';
 import AboutUs from '../pages/AboutUs'
 import Blog from '../pages/Blog'
-import NotFound from '../pages/404';
+import NotFound from '../pages/NotFound';
 import ApiTest from '../pages/ApiTest';
 
 import Login from '../pages/Auth/Login';
@@ -13,7 +13,7 @@ import ForgotPassword from '../pages/Auth/ForgotPassword';
 import PasswordResetReady from '../pages/Auth/PasswordResetReady';
 import PasswordRest from '../pages/Auth/PasswordReset';
 
-import Dashboard from '../pages/User/Common/Dashboard';
+
 function GuestRouter() {
   return (
      
@@ -21,7 +21,7 @@ function GuestRouter() {
           <Route index element={<Home />}/> 
 
           <Route path="/statistics" element={<NotFound />}/> 
-          <Route path="/blog" element={<Dashboard />}/> 
+          <Route path="/blog" element={<NotFound />}/> 
           <Route path="/aboutus" element={<AboutUs />}/>
 
           <Route path="/login" element={<Login />}/> 
