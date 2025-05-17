@@ -1,16 +1,23 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import 'preline/dist/preline';
 
 import Header from '../components/Header';
 import BreadCrump from '../components/BreadCrump';
 
+import Profile from '../components/Group/UserGroup/Profile';
+import AddressInfo from '../components/Group/UserGroup/AddressInfo';
+import UserCredentials from '../components/Group/UserGroup/UserCredentials'
 
-const Profile = () => {
-    return (
-        <>
-        <Header/>
-        <BreadCrump/>
 
+
+const UserDashboard = () => {
+  const [profileView, setProfileView] = useState(true);
+  const [addressView, setAddressView] = useState(false);
+  const [credentialsView , setcredentialsView] = useState(false)
+  return (
+    <>
+      <Header/>
+      <BreadCrump/>
 
 {/* Sidebar */}
 <div id="hs-application-sidebar" className="hs-overlay  [--auto-close:lg]
@@ -44,30 +51,75 @@ const Profile = () => {
     <div className="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
       <nav className="hs-accordion-group p-3 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
         <ul className="flex flex-col space-y-1">
- 
+          {/* User group start */}
 
-          <li><a className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" href="#">
-            <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-            Profile
-          </a></li>
+          <>
+        <li className="hs-accordion" id="projects-accordion">
+            <button type="button" className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" aria-expanded="true" aria-controls="projects-accordion-child">
+              <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              User
+
+              <svg className="hs-accordion-active:block ms-auto hidden size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+
+              <svg className="hs-accordion-active:hidden ms-auto block size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+
+            <div id="projects-accordion-child" className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden" role="region" aria-labelledby="projects-accordion">
+              <ul className="ps-8 pt-1 space-y-1">
+                <li>
+                  <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
+                    setAddressView(false)
+                    setProfileView(true)
+                  }}>
+                    Profile
+                  </label>
+                </li>
+                <li>
+                  <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
+                   setProfileView(false)
+                   setcredentialsView(false);
+                   setAddressView(true)
+                  }}>
+                     Address information
+                  </label>
+                </li>
+                <li>
+                  <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
+                    setAddressView(false)
+                    setProfileView(false);
+                    setcredentialsView(true);
+                    
+                  }}>
+                    Account Credentials
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </>
+        {/* User group end */}
         </ul>
       </nav>
     </div>
-    {/* End Content */}
+    
   </div>
 </div>
-{/* End Sidebar */}
 
-{/* Content */}
 <div className="w-full lg:ps-64">
   <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-    {/* your content goes here ... */}
+    <div className="px-1 py-1 sm:px-6 lg:px-8 mx-auto">{/* Card */}
+      <div className="bg-white rounded-xl shadow-xs p-4 sm:p-7">
+          {profileView && (<Profile/>)}
+          {addressView && (<AddressInfo/>)}
+          {credentialsView && (<UserCredentials/>)}
+      </div>
+     </div>
   </div>
 </div>
-{/* End Content */}
-{/* ========== END MAIN CONTENT ========== */}
-        </>
+
+
+   </>
     )
 }
 
-export default Profile;
+export default UserDashboard;

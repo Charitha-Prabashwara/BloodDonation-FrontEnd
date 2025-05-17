@@ -6,8 +6,13 @@ import loginImage from '../../assets/Auth/41490560_8935175 (1).png';
 import { toast } from 'react-toastify';
 //import { useNavigate } from "react-router-dom";
 
+import { useDispatch } from 'react-redux';
+import { setCredentials } from '../../Redux/authSlice';
+
 
 const Login = () => {
+    const dispatch = useDispatch();
+
     const [showPassword, setShowPassword] = useState(false);
     const [submitClick, setSubmitClick] = useState(false);
 
@@ -33,10 +38,16 @@ const makeResponse = ()=>{
     API.post('/user/login', {email: email, password:password},{
         withCredentials:true
     }).then((response)=>{
+        const {accessToken, user} = response.data.data;
+        const {message} =  response.data
        
-        const message = response.data.message;
+        dispatch(setCredentials({ accessToken, user }));
         setSubmitClick(false)
         toast.success(message);
+
+        console.log("Access Token:", accessToken);
+        console.log("User Info:", user);
+        console.log(message)
         
     }).catch((error)=>{
       // Handles API error and backend-down (network) errors

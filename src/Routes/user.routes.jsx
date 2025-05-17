@@ -1,5 +1,5 @@
 import {Route, Routes, } from 'react-router-dom';
-import Profile from '../pages/User/Common/Profile';
+import UserDashboard from '../pages/User/Common/UserDashboard'
 import NotFound from '../pages/NotFound'; 
 
 // Mock function to check if the user is authenticated
@@ -17,7 +17,7 @@ function UserRouter() {
     return (
      
         <Routes>
-            <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+            <Route path="/profile" element={<ProtectedRoute element={<UserDashboard />} />} />
         </Routes>
       
     )
