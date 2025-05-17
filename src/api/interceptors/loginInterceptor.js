@@ -16,15 +16,15 @@ export const UnauthorizedLoginInterceptor = (error) =>{
 }
 
 const authorized =(response) => {
-    const data = response.data.data;
+    // const data = response.data.data;
                               
-      store.dispatch(setCredentials({accessToken: data.access_token, user: data.user}));
+    //   store.dispatch(setCredentials({accessToken: data.access_token, user: data.user}));
                                                  
-      const state = store.getState(); 
-      const authData = state.auth;
+    //   const state = store.getState(); 
+    //   const authData = state.auth;
 
-      console.log("Access Token:", authData.accessToken);
-      console.log("User Info:", authData.user);
+    //   console.log("Access Token:", authData.accessToken);
+    //   console.log("User Info:", authData.user);
      
       
 }
