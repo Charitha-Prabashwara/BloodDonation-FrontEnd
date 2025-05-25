@@ -48,6 +48,10 @@ const makeResponse = ()=>{
         console.log("Access Token:", accessToken);
         console.log("User Info:", user);
         console.log(message)
+
+        if(user.role === 'user'){
+            window.location.href = "/user/";
+        }
         
     }).catch((error)=>{
       // Handles API error and backend-down (network) errors

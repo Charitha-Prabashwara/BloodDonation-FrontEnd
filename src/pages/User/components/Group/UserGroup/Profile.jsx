@@ -1,10 +1,16 @@
 //import { tab } from "@material-tailwind/react";
 import {React, useState, useEffect} from "react";
 import API from "../../../../../api/api";
-
-
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 const Profile=()=>{
    
+  
+    const accessToken = useSelector((state) => state.auth.accessToken);
+    //const user = useSelector((state) => state.auth.user);
+
+    const [ saveBTNActive, setsaveBTNActive] = useState(false);
+  
     const [firstName, setfirstName] = useState('');
     const [lastName, setlastName] = useState('');
     const [fullName, setfullName] = useState('');
@@ -13,16 +19,83 @@ const Profile=()=>{
     const [phoneNumber, setphoneNumber] = useState('');
     const [gender, setgender] = useState('') 
 
+    const loadFields =()=>{
+        API.get('/user/profile/',{
+          headers:{
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          }
+        }).then((profileData)=>{
 
-    useEffect(()=>{
+          console.log(profileData)
+          const {first_name, last_name, full_name, name_with_initials, nic, phone_number, gender} = profileData.data.data;
+          
+          setfirstName(first_name);
+          setlastName(last_name);
+          setfullName(full_name);
+          setnameWithInitials(name_with_initials);
+          setnic(nic)
+          setphoneNumber(phone_number),
+          setgender(gender)
+          
+
+          setsaveBTNActive(true);
+        }).catch((error)=>{
+          // Handles API error and backend-down (network) errors
+          setsaveBTNActive(false)
+        if (error.response) {
+            // Server responded with a status code outside 2xx
+            toast.error(error.response.data.message || "An error occurred");
+        } else if (error.request) {
+            // Request was made but no response (e.g., backend is down)
+            toast.error("Cannot connect to server. Please try again later.");
+        } else {
+            // Something else went wrong
+            toast.error(error.message);
+           
+        }
+        })
+    }
+
+    const saveData = ()=>{
+       API.put('/user/profile/',{
+           first_name:firstName,
+            last_name:lastName,
+            full_name:fullName,
+            name_with_initials:nameWithInitials,
+            phone_number:phoneNumber,
+            nic:nic,
+            gender:gender,
+          
+       },{
+          headers:{
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          }
+        }).then((response)=>{
+          const {message} = response.data;
+          toast.success(message)
+        }).catch((error)=>{
+           // Handles API error and backend-down (network) errors
+        
+        if (error.response) {
+            // Server responded with a status code outside 2xx
+            toast.error(error.response.data.message || "An error occurred");
+        } else if (error.request) {
+            // Request was made but no response (e.g., backend is down)
+            toast.error("Cannot connect to server. Please try again later.");
+        } else {
+            // Something else went wrong
+            toast.error(error.message);
+           
+        }
+        })
+    }
      
-      // API.get('/user/profile/',{
-      //   headers:{
-      //     'Authorization': `Bearer ${token}`,
-      //     'Content-Type': 'application/json', // Optional, but recommended
-      //   }
-      // })
-    })
+    useEffect(()=>{
+      
+      loadFields();
+    },[])
 
     return(
        <>
@@ -275,8 +348,21 @@ const Profile=()=>{
 
       <div className="mt-5 flex justify-end gap-x-2">
       
-        <button type="button" className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-          Save changes
+        <button type="button" className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" disabled={!saveBTNActive} onClick={()=>{
+          saveData()
+        }}>
+         
+          {!saveBTNActive && (
+            <>
+            Refresh page
+            </>
+          )}
+          {saveBTNActive && (
+            <>
+             Save changes
+            </>
+          )}
+
         </button>
       </div>
 

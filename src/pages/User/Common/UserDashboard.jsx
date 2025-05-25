@@ -7,13 +7,17 @@ import BreadCrump from '../components/BreadCrump';
 import Profile from '../components/Group/UserGroup/Profile';
 import AddressInfo from '../components/Group/UserGroup/AddressInfo';
 import UserCredentials from '../components/Group/UserGroup/UserCredentials'
+import DonationApplication from '../components/Group/UserGroup/DonationApplication';
 
 
 
 const UserDashboard = () => {
+ 
   const [profileView, setProfileView] = useState(true);
   const [addressView, setAddressView] = useState(false);
+  const [donationapplicationView, setdonationapplicationView] = useState(false)
   const [credentialsView , setcredentialsView] = useState(false)
+
   return (
     <>
       <Header/>
@@ -70,6 +74,7 @@ const UserDashboard = () => {
                   <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
                     setAddressView(false)
                     setProfileView(true)
+                    setdonationapplicationView(false)
                   }}>
                     Profile
                   </label>
@@ -78,6 +83,7 @@ const UserDashboard = () => {
                   <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
                    setProfileView(false)
                    setcredentialsView(false);
+                   setdonationapplicationView(false)
                    setAddressView(true)
                   }}>
                      Address information
@@ -87,6 +93,7 @@ const UserDashboard = () => {
                   <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
                     setAddressView(false)
                     setProfileView(false);
+                    setdonationapplicationView(false)
                     setcredentialsView(true);
                     
                   }}>
@@ -95,6 +102,17 @@ const UserDashboard = () => {
                 </li>
               </ul>
             </div>
+          </li>
+
+           <li>
+            <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
+              setProfileView(false)
+              setAddressView(false)
+              setcredentialsView(false)
+              setdonationapplicationView(true)
+            }}>
+              Donation Application
+            </label>
           </li>
         </>
         {/* User group end */}
@@ -112,6 +130,7 @@ const UserDashboard = () => {
           {profileView && (<Profile/>)}
           {addressView && (<AddressInfo/>)}
           {credentialsView && (<UserCredentials/>)}
+          {donationapplicationView && (<DonationApplication />)}
       </div>
      </div>
   </div>
