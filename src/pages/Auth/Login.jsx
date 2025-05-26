@@ -52,6 +52,11 @@ const makeResponse = ()=>{
         if(user.role === 'user'){
             window.location.href = "/user/";
         }
+
+        if(user.role === 'doctor'){
+            window.location.href = "/doctor/";
+        }
+
         
     }).catch((error)=>{
       // Handles API error and backend-down (network) errors
