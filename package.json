@@ -17,6 +17,7 @@
     "@preline/theme-switch": "^3.0.0",
     "@reduxjs/toolkit": "^2.6.1",
     "@tailwindcss/vite": "^4.0.15",
+    "@tanstack/react-table": "^8.21.3",
     "alpinejs": "^2.6.0",
     "apexcharts": "3.44.0",
     "axios": "^1.8.4",
