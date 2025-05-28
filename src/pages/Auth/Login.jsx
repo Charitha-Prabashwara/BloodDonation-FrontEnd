@@ -87,8 +87,8 @@ const makeResponse = ()=>{
         <>
       
         
-        <section className="bg-blue-200 min-h-screen flex items-center justify-center">
-            <div className="bg-[#fdfefff5] flex rounded-2xl shadow-lg max-w-3xl p-4 ml-5 mr-5"> 
+        <section className="bg-gray-100 min-h-screen flex items-center justify-center">
+            <div className="bg-[#fdfefff5] flex rounded-2xl shadow-lg max-w-3xl p-4 ml-5 mr-5 shadow-xl/30 shadow-red-100/100 ..."> 
                 <div className=" mt-8 sm:w-1/2 px-16">
                     <h2 className="mt-10 font-bold text-2xl text-[#4527a5] text-center">Login</h2>
                     <p className="text-xl mt-2 text-[#ef0b0b] text-opacity-70 text-center">
