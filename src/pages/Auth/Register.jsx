@@ -4,10 +4,13 @@ import API from '../../api/api'
 import './styles.css'
 import register from '../../assets/Auth/41490560_8935175 (4) (1).png';
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from 'react-redux';
 
 
 const Register = () => {
+    const accessToken = useSelector((state) => state.auth.accessToken);
+    const user = useSelector((state) => state.auth.user);
+
     const [showPassword, setShowPassword] = useState(false);
     const [submitClick, setSubmitClick] = useState(false);
 
@@ -18,6 +21,17 @@ const Register = () => {
     const [confirmPassword, setconfirmPassword] = useState("");
 
 
+    const checkLogin = ()=>{
+    if(accessToken && user){
+        if(user.role === 'user'){
+            window.location.href = "/user/";
+        }
+
+        if(user.role === 'doctor'){
+            window.location.href = "/doctor/";
+        }
+    }
+}
     const navigate = useNavigate();
 
     const redirect = (target) => {
@@ -58,6 +72,7 @@ const Register = () => {
     }
 
     useEffect(()=>{
+        checkLogin();
         document.title='Register'
     
     }, [])

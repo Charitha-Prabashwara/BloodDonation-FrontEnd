@@ -8,10 +8,14 @@ import { toast } from 'react-toastify';
 
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../../Redux/authSlice';
+import { useSelector } from 'react-redux';
 
 
 const Login = () => {
     const dispatch = useDispatch();
+
+    const accessToken = useSelector((state) => state.auth.accessToken);
+    const user = useSelector((state) => state.auth.user);
 
     const [showPassword, setShowPassword] = useState(false);
     const [submitClick, setSubmitClick] = useState(false);
@@ -19,6 +23,17 @@ const Login = () => {
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
 
+const checkLogin = ()=>{
+    if(accessToken && user){
+        if(user.role === 'user'){
+            window.location.href = "/user/";
+        }
+
+        if(user.role === 'doctor'){
+            window.location.href = "/doctor/";
+        }
+    }
+}
 
 const makeResponse = ()=>{
     // form validation
@@ -79,6 +94,7 @@ const makeResponse = ()=>{
 }
 
     useEffect(()=>{
+        checkLogin()
         document.title='Login'
 
     }, [])
