@@ -1,10 +1,44 @@
 import {React, useState,useEffect} from "react";
 import { useSelector } from 'react-redux';
+import API from "../../../api/api";
+import { toast } from "react-toastify";
+import { useDispatch } from 'react-redux';
+import { clearCredentials } from '../../../Redux/authSlice';
+
 const Header = ()=>{
+  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.auth.user);
+  const accessToken = useSelector((state) => state.auth.accessToken);
+
   const [UserName, setUserName] = useState('');
   const [UserEmail, setUserEmail] = useState('')
+
+  const logout = ()=>{
+    API.post('/user/logout',{},{
+      withCredentials:true,
+      headers:{
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          }
+    }).then(()=>{
+
+      dispatch(clearCredentials());
+
+    }).catch((error)=>{
+               if (error.response) {
+                   // Server responded with a status code outside 2xx
+                   toast.error(error.response.data.message || "An error occurred");
+               } else if (error.request) {
+                   // Request was made but no response (e.g., backend is down)
+                   toast.error("Cannot connect to server. Please try again later.");
+               } else {
+                   // Something else went wrong
+                   toast.error(error.message);
+                  
+               }
+    })
+  }
   useEffect(()=>{
 
     setUserName(user.first_name + " " + user.last_name);
@@ -54,7 +88,9 @@ const Header = ()=>{
             <div className="p-1.5 space-y-0.5">
 
           
-              <a className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 dark:focus:text-neutral-300" href="#">
+              <a className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 dark:focus:text-neutral-300" onClick={()=>{
+                logout()
+              }}>
                 <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 Log out
               </a>
