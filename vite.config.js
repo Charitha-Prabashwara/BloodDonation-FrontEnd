@@ -6,8 +6,17 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss()],
+   build: {
+    outDir: 'build', // Ensures build outputs to /dist
+  },
+  base: '/',
   server: {
-    host: '0.0.0.0', // Allow connections from any network interface
-    port: 3000
+    historyApiFallback: true,
+    host: '0.0.0.0', 
+    allowedHosts: [
+      'ec2-54-226-190-150.compute-1.amazonaws.com',
+      'localhost'  // Keep localhost for local development
+    ],// Allow connections from any network interface
+    port: 80
   }
 })
