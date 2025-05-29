@@ -1,4 +1,5 @@
-import {Route, Routes } from 'react-router-dom';
+import {Route, Routes, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import  Home from '../pages/Home';
 import AboutUs from '../pages/AboutUs'
 import Blog from '../pages/Blog'
@@ -13,7 +14,23 @@ import ForgotPassword from '../pages/Auth/ForgotPassword';
 import PasswordResetReady from '../pages/Auth/PasswordResetReady';
 import PasswordRest from '../pages/Auth/PasswordReset';
 
+import { useSelector } from 'react-redux';
 
+const ProtectedRoute = ({ children }) => {
+  const navigate = useNavigate();
+  const { user } = useSelector(state => state.auth);
+  
+  useEffect(() => {
+    if (!user ) {return null}
+    if (user && user.role !== 'user') {navigate('user', { replace: true })}
+    if (user && user.role !== 'doctor') {navigate('doctor', { replace: true })}
+  
+  
+  }, [user, navigate]);
+
+ 
+  return children;
+};
 function GuestRouter() {
   return (
      
@@ -24,16 +41,32 @@ function GuestRouter() {
           <Route path="/blog" element={<NotFound />}/> 
           <Route path="/aboutus" element={<AboutUs />}/>
 
-          <Route path="/login" element={<Login />}/> 
-          <Route path="/register" element={<Register />}/> 
-          <Route path="/account-created" element={<AccountCreated/>}/>
-          <Route path="/verify" element={<Verify/>}/>
-          <Route path="/forgot-password" element={<ForgotPassword />}/>
-          <Route path="/forgot-password-ready" element={<PasswordResetReady />}/>
-          <Route path="/password-reset" element={<PasswordRest />}/>
+          <Route path="/login" element={
+            <ProtectedRoute> <Login /> </ProtectedRoute>
+          }/> 
+          <Route path="/register" element={
+             <ProtectedRoute> <Register /> </ProtectedRoute>
+          }/> 
+          <Route path="/account-created" element={
+            <ProtectedRoute><AccountCreated/> </ProtectedRoute>
+          }/>
+          <Route path="/verify" element={
+            <ProtectedRoute><Verify/> </ProtectedRoute>
+            }/>
+          <Route path="/forgot-password" element={
+            <ProtectedRoute><ForgotPassword /></ProtectedRoute> 
+            }/>
+          <Route path="/forgot-password-ready" element={
+            <ProtectedRoute><PasswordResetReady /></ProtectedRoute>
+            }/>
+          <Route path="/password-reset" element={
+            <ProtectedRoute><PasswordRest /></ProtectedRoute> 
+            }/>
 
           {/* Backend api is working! TEST ROUTE */}
-          <Route path="/test" element={<ApiTest />}/>  
+          <Route path="/test" element={<ApiTest />}/> 
+
+          <Route path="*" element={<NotFound />} /> 
 
       </Routes>
 
