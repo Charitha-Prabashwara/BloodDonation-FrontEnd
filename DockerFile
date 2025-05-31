@@ -15,10 +15,8 @@ COPY . .
 
 CMD ["npm", "run", "build"]
 
+CMD ["npm", "run", "host"]
 
-## Install vite globally for preview
-RUN npm install -g vite
 
 EXPOSE 80
-CMD ["npm", "run", "host"]
 
