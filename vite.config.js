@@ -18,5 +18,6 @@ export default defineConfig({
       'localhost'  // Keep localhost for local development
     ],// Allow connections from any network interface
     port: 80
-  }
+  },
+  
 })
