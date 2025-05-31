@@ -24,7 +24,7 @@ const ProtectedRoute = ({ children }) => {
     if (!user ) {return null}
     if (user && user.role == 'user') {navigate('user', { replace: false })}
     if (user && user.role == 'doctor') {navigate('doctor', { replace: false })}
-    if(!user){ return true} 
+    
   
   
   }, [user, navigate]);
