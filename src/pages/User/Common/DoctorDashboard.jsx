@@ -67,7 +67,7 @@ const DoctorDashboard = () => {
           <li className="hs-accordion" id="projects-accordion">
             <button type="button" className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm font-medium text-gray-800 rounded-lg hover:bg-green-200 focus:outline-hidden focus:bg-green-400 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" aria-expanded="true" aria-controls="projects-accordion-child">
               <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-              Donation Applications
+              Donors
 
               <svg className="hs-accordion-active:block ms-auto hidden size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
 
@@ -94,7 +94,7 @@ const DoctorDashboard = () => {
                   //  setdonationapplicationView(false)
                   //  setAddressView(true)
                   }}>
-                     Address information
+                     Search Donors
                   </label>
                 </li>
                 <li>
