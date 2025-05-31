@@ -14,7 +14,7 @@ export default defineConfig({
     historyApiFallback: true,
     host: '0.0.0.0', 
     allowedHosts: [
-      'ec2-54-226-190-150.compute-1.amazonaws.com',
+      'ec2-100-25-213-177.compute-1.amazonaws.com',
       'localhost'  // Keep localhost for local development
     ],// Allow connections from any network interface
     port: 80
