@@ -22,8 +22,9 @@ const ProtectedRoute = ({ children }) => {
   
   useEffect(() => {
     if (!user ) {return null}
-    if (user && user.role !== 'user') {navigate('user', { replace: true })}
-    if (user && user.role !== 'doctor') {navigate('doctor', { replace: true })}
+    if (user && user.role == 'user') {navigate('user', { replace: false })}
+    if (user && user.role == 'doctor') {navigate('doctor', { replace: false })}
+    if(!user){ return true} 
   
   
   }, [user, navigate]);

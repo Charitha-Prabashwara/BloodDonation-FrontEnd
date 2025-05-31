@@ -9,8 +9,9 @@ const ProtectedRoute = ({ children }) => {
   const { user } = useSelector(state => state.auth);
 
   useEffect(() => {
-    if (user && user.role !== 'doctor') {navigate('/login', { replace: true })}
-    if (!user) {navigate('/login', { replace: true })}
+    if (user && user.role == 'doctor') {navigate('/doctor', { replace: false })}
+    else if(user && user.role !== 'doctor'){navigate('/login', { replace: false })}
+    if (!user) {navigate('/login', { replace: false })}
   }, [user, navigate]);
 
   if (!user) {return null}
