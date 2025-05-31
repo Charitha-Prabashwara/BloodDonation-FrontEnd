@@ -34,9 +34,9 @@ jobs:
    - name: Run Docker Container
      run: |
       docker rm -f react-js-container || true
-      docker run -d \
-      --restart on-failure:10 \
-      -p 3000:3000 \
+      sudo docker run -d \
+      --restart on-failure:3 \
+      -p 80:80 \
       --name react-js-container \
       -e VITE_REACT_APP_API_URL=${{ secrets.VITE_REACT_APP_API_URL }} \ 
       charitha124/react-js:latest \
