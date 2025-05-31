@@ -38,7 +38,7 @@ jobs:
       --restart on-failure:3 \
       -p 80:80 \
       --name react-js-container \
-      -e VITE_REACT_APP_API_URL=${{ secrets.VITE_REACT_APP_API_URL }} \ 
+      -e VITE_REACT_APP_API_URL=${{ secrets.VITE_REACT_APP_API_URL }} \
       charitha124/react-js:latest \
       npm run dev
 
