@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import DoctorDashboard from '../pages/User/Common/doctorDashboard';
+import DoctorDashboard from '/src/pages/User/Common/DoctorDashboard';
 import NotFound from '../pages/NotFound';
 import { useEffect } from 'react';
 
