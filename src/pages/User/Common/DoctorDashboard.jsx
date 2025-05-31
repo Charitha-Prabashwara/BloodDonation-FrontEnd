@@ -10,14 +10,20 @@ import UserCredentials from '../components/Group/UserGroup/UserCredentials'
 import DonationApplication from '../components/Group/UserGroup/DonationApplication';
 
 
+import ApplicationReview from '../components/Group/UserGroup/ApplicationReview';
+
 
 const DoctorDashboard = () => {
  
-  const [profileView, setProfileView] = useState(true);
+  const [profileView, setProfileView] = useState(false);
   const [addressView, setAddressView] = useState(false);
   const [donationapplicationView, setdonationapplicationView] = useState(false)
   const [credentialsView , setcredentialsView] = useState(false)
+  const [ApplicationReviewState, setApplicationReviewState] = useState(false)
 
+  useEffect(()=>{
+    
+  },[])
   return (
     <>
       <Header/>
@@ -59,7 +65,7 @@ const DoctorDashboard = () => {
 
           <>
           <li className="hs-accordion" id="projects-accordion">
-            <button type="button" className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" aria-expanded="true" aria-controls="projects-accordion-child">
+            <button type="button" className="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm font-medium text-gray-800 rounded-lg hover:bg-green-200 focus:outline-hidden focus:bg-green-400 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" aria-expanded="true" aria-controls="projects-accordion-child">
               <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
               Donation Applications
 
@@ -72,29 +78,31 @@ const DoctorDashboard = () => {
               <ul className="ps-8 pt-1 space-y-1">
                 <li>
                   <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
-                    setAddressView(false)
-                    setProfileView(true)
-                    setdonationapplicationView(false)
+                    setAddressView(false);
+                    setProfileView(false);
+                    setdonationapplicationView(false);
+                    setcredentialsView(false);
+                    setApplicationReviewState(true);
                   }}>
-                    Profile
+                    Application
                   </label>
                 </li>
                 <li>
                   <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
-                   setProfileView(false)
-                   setcredentialsView(false);
-                   setdonationapplicationView(false)
-                   setAddressView(true)
+                  //  setProfileView(false)
+                  //  setcredentialsView(false);
+                  //  setdonationapplicationView(false)
+                  //  setAddressView(true)
                   }}>
                      Address information
                   </label>
                 </li>
                 <li>
                   <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
-                    setAddressView(false)
-                    setProfileView(false);
-                    setdonationapplicationView(false)
-                    setcredentialsView(true);
+                    // setAddressView(false)
+                    // setProfileView(false);
+                    // setdonationapplicationView(false)
+                    // setcredentialsView(true);
                     
                   }}>
                     Account Credentials
@@ -119,8 +127,9 @@ const DoctorDashboard = () => {
                 <li>
                   <label className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 dark:text-neutral-200" onClick={()=>{
                     setAddressView(false)
-                    setProfileView(true)
                     setdonationapplicationView(false)
+                    setApplicationReviewState(false)
+                    setProfileView(true)
                   }}>
                     Profile
                   </label>
@@ -130,7 +139,9 @@ const DoctorDashboard = () => {
                    setProfileView(false)
                    setcredentialsView(false);
                    setdonationapplicationView(false)
+                   setApplicationReviewState(false)
                    setAddressView(true)
+                    
                   }}>
                      Address information
                   </label>
@@ -140,6 +151,7 @@ const DoctorDashboard = () => {
                     setAddressView(false)
                     setProfileView(false);
                     setdonationapplicationView(false)
+                    setApplicationReviewState(false)
                     setcredentialsView(true);
                     
                   }}>
@@ -155,6 +167,7 @@ const DoctorDashboard = () => {
               setProfileView(false)
               setAddressView(false)
               setcredentialsView(false)
+              setApplicationReviewState(false)
               setdonationapplicationView(true)
             }}>
               Donation Application
@@ -177,6 +190,7 @@ const DoctorDashboard = () => {
           {addressView && (<AddressInfo/>)}
           {credentialsView && (<UserCredentials/>)}
           {donationapplicationView && (<DonationApplication />)}
+          {ApplicationReviewState && (<ApplicationReview />)}
       </div>
      </div>
   </div>

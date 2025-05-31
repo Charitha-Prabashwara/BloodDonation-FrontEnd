@@ -85,10 +85,10 @@ const Header = ()=>{
               <p className="text-sm text-gray-500 dark:text-neutral-500">{UserName}</p>
               <p className="text-sm font-medium text-gray-800 dark:text-neutral-200">{UserEmail}</p>
             </div>
-            <div className="p-1.5 space-y-0.5">
+            <div className="">
 
           
-              <a className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 dark:focus:text-neutral-300" onClick={()=>{
+              <a className="flex items-center gap-x-3.5 py-3 px-4 font-bold rounded-b-md text-1xl bg-green-400 text-gray-200 hover:bg-green-500 focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700 dark:focus:text-neutral-300" onClick={()=>{
                 logout()
               }}>
                 <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
