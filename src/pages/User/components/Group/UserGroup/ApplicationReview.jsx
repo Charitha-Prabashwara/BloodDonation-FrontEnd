@@ -7,6 +7,8 @@ const ApplicationReview = ()=>{
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setTableData] = useState([]);
+
+  const [Loading, setLoading] = useState(false)
   
   const user = useSelector((state) => state.auth.user);
   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -24,10 +26,41 @@ const ApplicationReview = ()=>{
      return age;
     }
 
+ const applicationStateChange=async(state, applicationId)=>{
+  
+    const application_state_types =['pass', 'rejected']
+    if(!application_state_types.includes(state)){
+      toast.warning('Invalid Application Change')
+      return false;
+    }
 
+    return API.put(`/application/id/${applicationId}`, {
+      applicationState: state,
+    },{
+          headers:{
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          }
+    }).then((application)=>{
+        const data = application.data;
+        console.log(data)
+        toast.success(data.message)
+        return true
+    }).catch((error)=>{
+      if (error.response) {
+        toast.error(error.response.data.message || "An error occurred");
+      } else if (error.request) {
+        toast.error("Cannot connect to server. Please try again later.");
+      } else {
+        toast.error(error.message);                
+      }
+      return false;
+    })
+ }
 
- const loadData = ()=>{
-    API.get('/application/all?state=created',{
+ const loadData = async()=>{
+    setLoading(true)
+    const api_data = await API.get('/application/all?state=created',{
       headers:{
             'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
@@ -43,6 +76,7 @@ const ApplicationReview = ()=>{
         console.log(data.user.address)
         let makeRecord = {};
         makeRecord.id = data._id
+        makeRecord.userid = data.user._id
         makeRecord.nic = data.user.nic;
         makeRecord.fullName = data.user.full_name;
         makeRecord.age = calculateAge(data.birthday)
@@ -69,8 +103,11 @@ const ApplicationReview = ()=>{
         tableData.push(makeRecord)
       })
 
-      setTableData(tableData)
-      
+      setTableData(prev => {
+           prev.push(...tableData);
+           return prev;
+      })
+      setLoading(false)
     }).catch((error)=>{
       if (error.response) {
         toast.error(error.response.data.message || "An error occurred");
@@ -79,6 +116,7 @@ const ApplicationReview = ()=>{
       } else {
         toast.error(error.message);                
       }
+      setLoading(false)
     })
  }
 
@@ -192,6 +230,22 @@ const ApplicationReview = ()=>{
         <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
           <div>
             <p className="text-sm text-green-600">
+              <button className="relative inline-flex items-center px-4 py-2 mx-2 border border-gray-300 bg-blue-500 text-sm font-bold text-white hover:bg-red-500 disabled:opacity-50"
+              onClick={async()=>{
+                await loadData()
+              }}>
+                {Loading && (
+                  <>
+                  Loading....
+                  </>
+                )}
+                {!Loading && (
+                  <>
+                   Reload Applications
+                  </>
+                  )}
+               
+              </button>
               Showing <span className="font-medium">{table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1}</span> to{' '}
               <span className="font-medium">{
                 Math.min(
@@ -200,7 +254,9 @@ const ApplicationReview = ()=>{
                 )
               }</span> of{' '}
               <span className="font-medium">{data.length}</span> results
+              
             </p>
+            
           </div>
           <div>
             <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
@@ -256,7 +312,7 @@ const ApplicationReview = ()=>{
                     </h3>
                     <div className="mt-2 space-y-3">
                     <div className="mt-2 space-y-3">
-                      <p className="text-sm text-gray-500"><span className="font-medium text-green-500">ID:</span> {selectedUserId.id}</p>
+                      <p className="text-sm text-gray-500"><span className="font-medium text-green-500">APPLICATION ID:</span> {selectedUserId.id}</p>
                       <p className="text-sm text-gray-500"><span className="font-medium text-green-500">NIC:</span> {selectedUserId.nic}</p>
                       <p className="text-sm text-gray-500"><span className="font-medium text-green-500">Full Name:</span> {selectedUserId.fullName}</p>
                       <p className="text-sm text-gray-500"><span className="font-medium text-green-500">Age:</span> {selectedUserId.age}</p>
@@ -795,10 +851,13 @@ const ApplicationReview = ()=>{
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => {
-                    alert(`Action for user ${selectedUserId.id}`);
-                    setIsModalOpen(false);
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={async() => {
+                    if(await applicationStateChange("pass", selectedUserId.id)){
+                      await loadData()
+                      setIsModalOpen(false);
+                    }
+                    
                   }}
                 >
                   Pass Application
@@ -806,8 +865,13 @@ const ApplicationReview = ()=>{
 
                  <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-400 text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => setIsModalOpen(false)}
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-400 text-base font-medium text-white hover:bg-red-500 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={async() => {
+                    if(await applicationStateChange("rejected", selectedUserId.id)){
+                      await loadData()
+                      setIsModalOpen(false);
+                    }
+                  }}
                 >
                   Reject
                 </button>
