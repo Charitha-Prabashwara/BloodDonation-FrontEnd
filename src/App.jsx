@@ -35,4 +35,12 @@ function App() {
   );
 }
 
+if (typeof window !== 'undefined') {
+  window.onload = () => {
+    import('preline/preline').then((preline) => {
+      preline?.HSStaticMethods?.autoInit()
+    })
+  }
+}
+
 export default App
