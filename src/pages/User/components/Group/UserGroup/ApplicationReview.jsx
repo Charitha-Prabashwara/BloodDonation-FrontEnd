@@ -306,7 +306,7 @@ const ApplicationReview = ()=>{
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                     <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                      Donation Application
+                      Donation Application*
                     </h3>
                     <div className="mt-2 space-y-3">
                     <div className="mt-2 space-y-3">
