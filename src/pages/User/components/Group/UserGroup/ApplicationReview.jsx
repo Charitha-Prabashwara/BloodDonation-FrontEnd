@@ -26,7 +26,7 @@ const ApplicationReview = ()=>{
      return age;
     }
 
- const applicationStateChange=async(state, applicationId)=>{
+ const applicationStateChange=(state, applicationId)=>{
   
     const application_state_types =['pass', 'rejected']
     if(!application_state_types.includes(state)){
@@ -58,9 +58,9 @@ const ApplicationReview = ()=>{
     })
  }
 
- const loadData = async()=>{
+ const loadData = ()=>{
     setLoading(true)
-    const api_data = await API.get('/application/all?state=created',{
+   API.get('/application/all?state=created',{
       headers:{
             'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
@@ -103,10 +103,8 @@ const ApplicationReview = ()=>{
         tableData.push(makeRecord)
       })
 
-      setTableData(prev => {
-           prev.push(...tableData);
-           return prev;
-      })
+      setTableData(tableData);
+  
       setLoading(false)
     }).catch((error)=>{
       if (error.response) {
@@ -854,7 +852,7 @@ const ApplicationReview = ()=>{
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-500 text-base font-medium text-white hover:bg-green-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={async() => {
                     if(await applicationStateChange("pass", selectedUserId.id)){
-                      await loadData()
+                      loadData()
                       setIsModalOpen(false);
                     }
                     
@@ -868,7 +866,7 @@ const ApplicationReview = ()=>{
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-400 text-base font-medium text-white hover:bg-red-500 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={async() => {
                     if(await applicationStateChange("rejected", selectedUserId.id)){
-                      await loadData()
+                      loadData()
                       setIsModalOpen(false);
                     }
                   }}
