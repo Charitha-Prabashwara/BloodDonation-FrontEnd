@@ -194,6 +194,10 @@ const ApplicationReview = ()=>{
                         <td 
                           key={cell.id} 
                           className="px-6 py-4 whitespace-nowrap"
+                          aria-haspopup="dialog" 
+                          aria-expanded="false" 
+                          aria-controls="hs-basic-modal" 
+                          data-hs-overlay="#hs-basic-modal"
                         >
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </td>

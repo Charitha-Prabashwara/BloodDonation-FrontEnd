@@ -78,7 +78,7 @@ const Register = () => {
     }, [])
 
     return (
-        <section className="bg-blue-200 min-h-screen flex items-center justify-center">
+        <section className="bg-gray-200 min-h-screen flex items-center justify-center">
             <div className="bg-[#fdfefff5] flex rounded-2xl shadow-lg max-w-3xl p-4 ml-5 mr-5"> 
                 <div className=" mt-1 sm:w-1/2 px-16">
                     <h2 className="mt-2 font-bold text-2xl text-[#4527a5] text-center">Register</h2>

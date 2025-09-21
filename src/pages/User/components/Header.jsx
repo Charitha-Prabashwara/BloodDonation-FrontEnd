@@ -1,12 +1,15 @@
 import {React, useState,useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import API from "../../../api/api";
 import { toast } from "react-toastify";
 import { useDispatch } from 'react-redux';
 import { clearCredentials } from '../../../Redux/authSlice';
+import logo from '../../../assets/main.png'
 
 const Header = ()=>{
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.user);
   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -22,8 +25,10 @@ const Header = ()=>{
             'Content-Type': 'application/json',
           }
     }).then(()=>{
-
+      
       dispatch(clearCredentials());
+      navigate('/')
+    
 
     }).catch((error)=>{
                if (error.response) {
@@ -51,9 +56,14 @@ const Header = ()=>{
   <nav className="px-4 sm:px-6 flex basis-full items-center w-full mx-auto">
     <div className="me-5 lg:me-0 lg:hidden">
       {/* Logo */}
-      <a className="flex-none rounded-md text-xl inline-block font-semibold focus:outline-hidden focus:opacity-80" href="#" aria-label="Preline">
-        Blood Link
-      </a>
+       {/* Logo */}
+            <a className="flex items-center" href="#" aria-label="Preline">
+              <img src={logo} alt="" width={50} height={50}/>
+              <h1 class="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
+                Blood<span class="text-gray-800">Link</span>
+              </h1>
+            </a>
+            {/* End Logo */}
       {/* End Logo */}
 
       <div className="lg:hidden ms-1">
@@ -63,9 +73,8 @@ const Header = ()=>{
 
     <div className="w-full flex items-center justify-end ms-auto md:justify-between gap-x-1 md:gap-x-3">
       
-      <div className="hidden md:block">
- 
-        {/* End Search Input */}
+      <div class="hidden md:block">
+      
       </div>
 
       
@@ -95,6 +104,8 @@ const Header = ()=>{
                 Log out
               </a>
             </div>
+
+        
           </div>
         </div>
         {/* End Dropdown */}

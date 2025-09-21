@@ -10,10 +10,11 @@ import UserRoutes from './Routes/user.routes';
 import DonorRoutes from './Routes/donor.routes';
 import DoctorRoutes from './Routes/doctor.routes';
 import AssistantRoutes from './Routes/assistant.routes';
-
+import PageLoaderWrapper from "./Wrapper/PageLoaderWrapper";
 function App() {
   return (
     <BrowserRouter>
+     <PageLoaderWrapper>
       <Routes>
         {/* Guest Routes */}
         <Route path="/*" element={<GuestRoutes/>} />
@@ -31,6 +32,7 @@ function App() {
         {/* Assistant Routes */}
         <Route path="/assistant/*" element={<AssistantRoutes />} />
       </Routes>
+      </PageLoaderWrapper>
     </BrowserRouter>
   );
 }
