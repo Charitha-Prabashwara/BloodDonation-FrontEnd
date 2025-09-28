@@ -140,6 +140,17 @@ const agelist =()=>{
   return list;
 
 }
+
+const ageRangeSelector = (event)=>{
+    const checked = event.target.checked
+    if(!checked){
+      setAgeEnable(false);
+      setAgeRangeEnable(true);
+      return
+    }
+    setAgeEnable(true);
+    setAgeRangeEnable(false);
+}
   const [data, setData] = useState([]);
   const [provinceList, setProvinceList] = useState([])
   const [districtList, setDistrictList] = useState([])
@@ -155,7 +166,11 @@ const agelist =()=>{
   const [selectGender, setSelectGender] = useState("Any");
   const [selectAge, setSelectAge] = useState("Any");
 
+  const [ageRangeEnable, setAgeRangeEnable] = useState(false);
+  const [ageEnable, setAgeEnable] = useState(false);
  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
     useEffect(()=>{
       setProvinceList(locations.provinceList)
       setAgeList(agelist());
@@ -295,7 +310,8 @@ const agelist =()=>{
         
         onChange={(e)=>{
           handleAgeSelect(e);
-        }}>
+        }}
+        disabled={ageEnable}>
           <option>Any</option>
           {ageList.map((age, index) => (
             <option key={index} value={age} >
@@ -319,16 +335,18 @@ const agelist =()=>{
     </div>
 
 
-
           {/* Thread Row:*/}
     <div className="flex flex-col md:flex-row flex-wrap gap-4 mt-4">
       {/* Gender */}
-              <div className="relative flex-1 w-full md:w-auto">
-                <div className="hs-tooltip flex items-center gap-x-3">
-          <label htmlFor="hs-tooltip-example" className="hs-tooltip-toggle relative inline-block w-11 h-6 cursor-pointer">
-            <input type="checkbox" id="hs-tooltip-example" className="peer sr-only" />
-            <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out peer-checked:bg-blue-600 peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
-            <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
+        <div className="relative flex-1 w-full md:w-auto">
+          <div className="hs-tooltip flex items-center gap-x-3">
+            <label htmlFor="hs-tooltip-example" className="hs-tooltip-toggle relative inline-block w-11 h-6 cursor-pointer">
+              <input type="checkbox" id="hs-tooltip-example" className="peer sr-only" onChange={(e)=>{
+                ageRangeSelector(e)
+              }} 
+              />
+              <span className="absolute inset-0 bg-gray-200 rounded-full transition-colors duration-200 ease-in-out peer-checked:bg-blue-600 peer-disabled:opacity-50 peer-disabled:pointer-events-none"></span>
+              <span className="absolute top-1/2 start-0.5 -translate-y-1/2 size-5 bg-white rounded-full shadow-xs transition-transform duration-200 ease-in-out peer-checked:translate-x-full"></span>
           </label>
           <label htmlFor="hs-tooltip-example" className="text-sm text-gray-500">Age range selector</label>
           
@@ -349,6 +367,7 @@ const agelist =()=>{
                 tabIndex={-1}
                 aria-label="Decrease"
                 data-hs-input-number-decrement
+                disabled={ageRangeEnable}
               >
                 <svg
                   className="shrink-0 size-3.5"
@@ -372,6 +391,7 @@ const agelist =()=>{
                 aria-roledescription="Number field"
                 defaultValue={0}
                 data-hs-input-number-input
+                disabled={ageRangeEnable}
               />
 
               {/* Increment button */}
@@ -381,6 +401,7 @@ const agelist =()=>{
                 tabIndex={-1}
                 aria-label="Increase"
                 data-hs-input-number-increment
+                disabled={ageRangeEnable}
               >
                 <svg
                   className="shrink-0 size-3.5"
@@ -416,6 +437,7 @@ const agelist =()=>{
                 tabIndex={-1}
                 aria-label="Decrease"
                 data-hs-input-number-decrement
+                disabled={ageRangeEnable}
               >
                 <svg
                   className="shrink-0 size-3.5"
@@ -439,6 +461,7 @@ const agelist =()=>{
                 aria-roledescription="Number field"
                 defaultValue={0}
                 data-hs-input-number-input
+                disabled={ageRangeEnable}
               />
 
               {/* Increment button */}
@@ -448,6 +471,7 @@ const agelist =()=>{
                 tabIndex={-1}
                 aria-label="Increase"
                 data-hs-input-number-increment
+                disabled={ageRangeEnable}
               >
                 <svg
                   className="shrink-0 size-3.5"
@@ -503,7 +527,10 @@ const agelist =()=>{
         </thead>
         <tbody className="divide-y divide-gray-200">
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="hover:bg-red-50 cursor-pointer">
+            <tr key={row.id} className="hover:bg-red-50 cursor-pointer"
+            onClick={()=>{
+              setIsModalOpen(true)
+            }}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}
                 className="px-6 py-4 whitespace-nowrap">
@@ -569,6 +596,56 @@ const agelist =()=>{
       </div>
       </div>
       </div>
+      
+
+
+
+
+    {/* Modal - start */}
+            {/* Modal */}
+      {isModalOpen && (
+        <>
+        <div className="fixed inset-10 z-100 overflow-y-auto">
+          <div className="flex items-start justify-center min-h-screen px-4">
+            
+            {/* Background overlay */}
+            <div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+              aria-hidden="true"
+              onClick={() => setIsModalOpen(false)}
+            ></div>
+
+            {/* Modal box */}
+            <div className="relative bg-white rounded-lg shadow-xl w-full max-w-3/4 mx-auto p-6 z-50">
+              {/* Close button */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+              >
+                ✖
+              </button>
+
+              {/* Modal content */}
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Test Modal
+              </h3>
+              <p className="text-gray-600 mb-4">
+                This is a small PrelineUI-style modal for testing.
+              </p>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      
+    </>
+  )};
+
+    {/* Modal - end */}
   </>
 );
 
