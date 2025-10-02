@@ -5,12 +5,23 @@ services:
       context: .
       dockerfile: DockerFile
     container_name: blood-donation-frontend-dev  # Define a custom container name
+    
     ports:
       - "3000:3000"  # Expose the Vite development server on port 3000
+    networks:
+      - blood-link
     volumes:
-      - .:/app  # Mount the current directory to the container for live reloading
+      - shared-data:/shared
     environment:
-      - NODE_ENV=development
-      - VITE_HOST=0.0.0.0
+      - VITE_REACT_APP_API_URL=http://localhost:8000/api/v1/
+
     command: ["npm", "run", "dev"] # Start the Vite development server
     tty: true  # Allocate a pseudo-TTY for the container
+
+networks:
+  blood-link:
+    external: true
+
+volumes:
+  shared-data:
+    external: true
