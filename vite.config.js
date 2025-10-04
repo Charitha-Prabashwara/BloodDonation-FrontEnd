@@ -2,22 +2,23 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),tailwindcss()],
-   build: {
-    outDir: 'build', // Ensures build outputs to /dist
+  plugins: [react(), tailwindcss()],
+  build: {
+    outDir: 'build',
   },
-  base: '/',
   server: {
-    historyApiFallback: true,
-    host: '0.0.0.0', 
-    allowedHosts: [
-      'ec2-54-165-222-6.compute-1.amazonaws.com',
-      'localhost'  // Keep localhost for local development
-    ],// Allow connections from any network interface
-    port: 80
-  },
-  
+    host: '0.0.0.0',
+    port: 3000,
+    strictPort: true,
+    cors: {
+      origin: ['https://localhost', 'http://localhost', 'https://localhost/api/v1', 'http://localhost:/api/v1'],
+      methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+      credentials: true
+    },
+    hmr: {
+      host: 'localhost',
+      protocol: 'ws'
+    }
+  }
 })
